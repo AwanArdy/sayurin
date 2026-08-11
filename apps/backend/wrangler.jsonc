@@ -2,7 +2,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "backend",
   "main": "src/index.ts",
-  "compatibility_date": "2026-08-11"
+  "compatibility_date": "2026-08-11",
   // "compatibility_flags": [
   //   "nodejs_compat"
   // ],
@@ -27,7 +27,7 @@
        "database_name": "sayurin",
        "database_id": ""
     }
-  ],
+  ]
   // "ai": {
   //   "binding": "AI"
   // },
