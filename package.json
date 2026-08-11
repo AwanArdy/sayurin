@@ -1,0 +1,16 @@
+{
+  "name": "sayurin",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev:frontend": "npm run dev -w frontend",
+    "dev:backend": "npm run dev -w backend",
+    "install:all": "npm install"
+  },
+  "keywords": [],
+  "type": "commonjs"
+}

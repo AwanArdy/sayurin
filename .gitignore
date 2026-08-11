@@ -1,0 +1,12 @@
+# Dependency utama monorepo
+node_modules/
+
+# File environment & logs
+.env
+.env.*
+*.log
+npm-debug.log*
+
+# File sistem operasi
+.DS_Store
+Thumbs.db
