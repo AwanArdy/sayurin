@@ -5,6 +5,17 @@ import * as schema from '../schema';
 import { success } from '../lib/response';
 import { authRequired } from '../middleware/auth';
 
+// Threshold level V1 (dokumentasi PRD Phase 8.3)
+const USER_LEVELS: Array<{ minKg: number; level: string }> = [
+  { minKg: 10, level: 'Eco Legend' },
+  { minKg: 3, level: 'Eco Warrior' },
+  { minKg: 1, level: 'Eco Saver' },
+];
+const DEFAULT_USER_LEVEL = 'Eco Starter';
+
+const getUserLevel = (foodWasteSavedKg: number): string =>
+  USER_LEVELS.find((lvl) => foodWasteSavedKg >= lvl.minKg)?.level ?? DEFAULT_USER_LEVEL;
+
 type Variables = {
   db: DrizzleD1Database<typeof schema>;
   userId: string;
@@ -35,16 +46,8 @@ wasteLogRoutes.get('/', async (c) => {
   }
 
   // Hitung user_level berdasarkan thresholds v1[cite: 3]
-  let user_level = 'Eco Starter';
   const kg = log.foodWasteSavedKg || 0;
-  
-  if (kg >= 10) {
-    user_level = 'Eco Legend';
-  } else if (kg >= 3) {
-    user_level = 'Eco Warrior';
-  } else if (kg >= 1) {
-    user_level = 'Eco Saver';
-  }
+  const user_level = getUserLevel(kg);
 
   return c.json(success({
     food_waste_saved_kg: kg,

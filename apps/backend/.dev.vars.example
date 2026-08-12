@@ -1,0 +1,11 @@
+# Salin file ini menjadi `.dev.vars` untuk menjalankan backend secara lokal.
+# Jangan pernah commit `.dev.vars` ke git.
+
+# Secret yang WAJIB ada untuk auth (JWT sign/verify). Gunakan nilai panjang & acak,
+# contoh: openssl rand -base64 48
+JWT_SECRET=replace-me-with-a-long-random-secret
+
+# Opsional: daftar origin yang diizinkan CORS, pisahkan dengan koma.
+# Jika kosong, default ke localhost dev. Contoh production:
+# CORS_ORIGIN=https://app.sayurin.com
+CORS_ORIGIN=http://localhost:5173,http://localhost:3000

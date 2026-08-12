@@ -3,8 +3,9 @@ import { type DrizzleD1Database } from "drizzle-orm/d1";
 import { eq } from "drizzle-orm";
 import { zValidator } from "@hono/zod-validator";
 import * as schema from '../schema';
-import { success, fail } from "../lib/response";
+import { success, fail, formatZodError } from "../lib/response";
 import { calculateCartSchema } from "../validators/schema";
+import { parseLimit, parseOffset } from "../lib/pagination";
 
 type Variables = {
   db: DrizzleD1Database<typeof schema>;
@@ -12,11 +13,15 @@ type Variables = {
 
 const recipesRoutes = new Hono<{ Variables: Variables }>();
 
-// GET /api/v1/recipes (Phase 5.1) - List semua resep
+// GET /api/v1/recipes (Phase 5.1) - List semua resep (opsional pagination)
 recipesRoutes.get('/', async (c) => {
   const db = c.get('db');
-  const allRecipes = await db.select().from(schema.recipes);
-  
+  const limit = parseLimit(c.req.query('limit'));
+  const offset = parseOffset(c.req.query('offset'));
+
+  const allRecipes = await db.select().from(schema.recipes).limit(limit).offset(offset);
+
+  c.header('Cache-Control', 'public, max-age=60, s-maxage=60');
   return c.json(success(allRecipes));
 });
 
@@ -48,7 +53,9 @@ recipesRoutes.get('/:id', async (c) => {
 });
 
 // POST /api/v1/recipes/:id/calculate-cart (Phase 5.3 - 5.8) - Kalkulator belanja
-recipesRoutes.post('/:id/calculate-cart', zValidator('json', calculateCartSchema), async (c) => {
+recipesRoutes.post('/:id/calculate-cart', zValidator('json', calculateCartSchema, (result, c) => {
+  if (!result.success) return c.json(formatZodError(result.error), 400);
+}), async (c) => {
   const db = c.get('db');
   const id = c.req.param('id');
   const { servings, pantry_ingredient_ids } = c.req.valid('json');
@@ -65,6 +72,7 @@ recipesRoutes.post('/:id/calculate-cart', zValidator('json', calculateCartSchema
       ingredientId: schema.recipeIngredients.id,
       productId: schema.products.id,
       productName: schema.products.name,
+      productUnit: schema.products.unit,
       price: schema.products.price,
       amountPerServing: schema.recipeIngredients.amountPerServing,
       unit: schema.recipeIngredients.unit,
@@ -77,7 +85,19 @@ recipesRoutes.post('/:id/calculate-cart', zValidator('json', calculateCartSchema
   let items_in_pantry_count = 0;
   let total_estimated_price = 0;
 
-  // Algoritma pengecekan keranjang belanja[cite: 3]
+  // Packing Rule V1: `products.price` adalah harga per SKU/kemasan,
+  // ukuran kemasan tercantum pada `products.unit` (mis. "500 gram", "ikat", "pcs").
+  // Estimasi = price * jumlah kemasan yang dibutuhkan = ceil(bahan / ukuran per kemasan).
+
+  // Ekstrak besaran referensi dari unit produk, mis. "500 gram" -> 500; "ikat" -> 1.
+  const parsePackSize = (productUnit: string | null): number => {
+    const match = (productUnit ?? '').match(/(\d+(?:[.,]\d+)?)/);
+    return match ? parseFloat(match[0].replace(',', '.')) : 1;
+  };
+
+  // Ingredient dalam satuan berat (gram/kg) bisa disamakan dengan unit produk berat.
+  const isMassUnit = (unit: string | null): boolean => /g\b|gram|kg|kilo/i.test(unit ?? '');
+
   for (const ing of ingredients) {
     const calculated_amount = ing.amountPerServing * servings;
     
@@ -87,16 +107,29 @@ recipesRoutes.post('/:id/calculate-cart', zValidator('json', calculateCartSchema
       continue; // Lewati, tidak perlu dibeli
     }
 
+    // Satuan bahan & produk kompatibel (mis. ikat == ikat) atau sama-sama berat
+    const sameUnit = ing.unit === ing.productUnit;
+    const bothMass = isMassUnit(ing.unit) && isMassUnit(ing.productUnit);
+    const canScale = sameUnit || bothMass;
+
+    const units_needed = canScale
+      ? Math.max(1, Math.ceil(calculated_amount / parsePackSize(ing.productUnit)))
+      : 1; // Unit tidak dapat dikonversi -> asumsikan 1 kemasan
+
+    const estimated_price = ing.price * units_needed;
+
     // Masukkan ke keranjang belanja
     items_to_buy.push({
       product_id: ing.productId,
       product_name: ing.productName,
       calculated_amount,
       unit: ing.unit,
-      price: ing.price // Asumsi Packing Rule V1: 1 unit harga per bahan[cite: 3]
+      units_needed,
+      estimated_price,
+      price: ing.price,
     });
 
-    total_estimated_price += ing.price;
+    total_estimated_price += estimated_price;
   }
 
   return c.json(success({

@@ -12,7 +12,7 @@ export const authRequired = createMiddleware(async (c, next) => {
   const token = authHeader.split(' ')[1];
 
   try {
-    const payload = await verify(token, c.env.JWT_SECRET);
+    const payload = await verify(token, c.env.JWT_SECRET, 'HS256');
     c.set('userId', payload.id); // Simpan userId ke context[cite: 3]
     await next();
   } catch (error) {

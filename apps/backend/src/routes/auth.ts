@@ -4,9 +4,9 @@ import { zValidator } from '@hono/zod-validator';
 import { eq } from 'drizzle-orm';
 import { type DrizzleD1Database } from 'drizzle-orm/d1';
 import * as schema from '../schema';
-import { success, fail } from '../lib/response';
+import { success, fail, formatZodError } from '../lib/response';
 import { registerSchema, loginSchema } from '../validators/schema';
-import { hashPassword } from '../lib/hash';
+import { hashPassword, verifyPassword } from '../lib/hash';
 
 type Bindings = {
   JWT_SECRET: string;
@@ -19,7 +19,9 @@ type Variables = {
 const authRoutes = new Hono<{ Bindings: Bindings; Variables: Variables }>();
 
 // POST /api/v1/auth/register (Phase 6.2)
-authRoutes.post('/register', zValidator('json', registerSchema), async (c) => {
+authRoutes.post('/register', zValidator('json', registerSchema, (result, c) => {
+  if (!result.success) return c.json(formatZodError(result.error), 400);
+}), async (c) => {
   const db = c.get('db');
   const { email, password, name } = c.req.valid('json');
 
@@ -40,13 +42,16 @@ authRoutes.post('/register', zValidator('json', registerSchema), async (c) => {
     email,
     passwordHash,
     name,
+    createdAt: new Date().toISOString(),
   });
 
   return c.json(success({ id, email, name }));
 });
 
 // POST /api/v1/auth/login (Phase 6.3)
-authRoutes.post('/login', zValidator('json', loginSchema), async (c) => {
+authRoutes.post('/login', zValidator('json', loginSchema, (result, c) => {
+  if (!result.success) return c.json(formatZodError(result.error), 400);
+}), async (c) => {
   const db = c.get('db');
   const { email, password } = c.req.valid('json');
 
@@ -56,14 +61,19 @@ authRoutes.post('/login', zValidator('json', loginSchema), async (c) => {
     return c.json(fail('UNAUTHORIZED', 'Email atau password salah'), 401); //[cite: 3]
   }
 
-  const passwordHash = await hashPassword(password);
-  
-  if (user.passwordHash !== passwordHash) {
+  if (!(await verifyPassword(password, user.passwordHash))) {
     return c.json(fail('UNAUTHORIZED', 'Email atau password salah'), 401); //[cite: 3]
   }
 
-  // Buat JWT Token
-  const token = await sign({ id: user.id, email: user.email }, c.env.JWT_SECRET);
+  // Buat JWT Token dengan masa berlaku 7 hari
+  const token = await sign(
+    {
+      id: user.id,
+      email: user.email,
+      exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 7,
+    },
+    c.env.JWT_SECRET
+  );
 
   return c.json(success({ 
     token, 

@@ -28,7 +28,14 @@
        "database_id": "ef36db09-6bed-4b8e-be84-0075ff38a700",
        "migrations_dir": "drizzle"
     }
-  ]
+  ],
+  // WAJIB dikonfigurasi sebelum deploy:
+  //   - JWT_SECRET  -> secret wajib untuk sign/verify JWT. Set dengan: `wrangler secret put JWT_SECRET`
+  //                    (untuk dev lokal: salin apps/backend/.dev.vars.example ke .dev.vars)
+  //   - CORS_ORIGIN -> opsional, daftar origin yang diizinkan dipisah koma. Default: localhost dev.
+  // "vars": {
+  //   "CORS_ORIGIN": "https://app.sayurin.com"
+  // },
   // "ai": {
   //   "binding": "AI"
   // },

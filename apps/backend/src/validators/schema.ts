@@ -1,14 +1,14 @@
 import z from "zod";
 
 export const registerSchema = z.object({
-  email: z.string().email('Format email tidak valid'),
+  email: z.string().trim().toLowerCase().email('Format email tidak valid'),
   password: z.string().min(6, 'Password minimal 6 karakter'),
-  name: z.string().min(2, 'Nama minimal 2 karakter'),
+  name: z.string().trim().min(2, 'Nama minimal 2 karakter'),
 });
 
 export const loginSchema = z.object({
-  email: z.string().email('Format email tidak valid'),
-  password: z.string(),
+  email: z.string().trim().toLowerCase().email('Format email tidak valid'),
+  password: z.string().min(1, 'Password wajib diisi'),
 });
 
 export const calculateCartSchema = z.object({
@@ -18,9 +18,8 @@ export const calculateCartSchema = z.object({
 
 export const checkoutSchema = z.object({
   items: z.array(z.object({
-    product_id: z.string(),
-    quantity: z.number().min(1)
-  })),
+    product_id: z.string().min(1, 'product_id wajib diisi'),
+    quantity: z.number().int('quantity harus bilangan bulat').min(1, 'quantity minimal 1')
+  })).min(1, 'Minimal satu item untuk checkout'),
   substitution_policy: z.enum(['auto_similiar','whatsapp_confirm', 'auto_refund']),
-  shipping_address_id: z.string()
 });

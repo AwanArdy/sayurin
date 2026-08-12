@@ -3,6 +3,7 @@ import { type DrizzleD1Database } from "drizzle-orm/d1";
 import { like, or, asc, desc, eq, and, type SQL } from "drizzle-orm";
 import * as schema from '../schema';
 import { success, fail } from "../lib/response";
+import { parseLimit, parseOffset } from "../lib/pagination";
 
 type Variables = {
   db: DrizzleD1Database<typeof schema>;
@@ -16,6 +17,8 @@ productsRoutes.get('/', async (c) => {
   const search = c.req.query('search');
   const nutrition = c.req.query('nutrition');
   const sort = c.req.query('sort');
+  const limit = parseLimit(c.req.query('limit'));
+  const offset = parseOffset(c.req.query('offset'));
 
   const conditions: SQL[] = [];
 
@@ -47,8 +50,11 @@ productsRoutes.get('/', async (c) => {
   const allProducts = await db.select()
     .from(schema.products)
     .where(whereClause)
-    .orderBy(orderByClause ? orderByClause : asc(schema.products.id));
+    .orderBy(orderByClause ? orderByClause : asc(schema.products.id))
+    .limit(limit)
+    .offset(offset);
 
+  c.header('Cache-Control', 'public, max-age=60, s-maxage=60');
   return c.json(success(allProducts));
 });
 

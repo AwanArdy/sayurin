@@ -17,6 +17,7 @@ import wasteLogRoutes from './routes/waste-log';
 type Bindings = {
   DB: D1Database
   JWT_SECRET: string
+  CORS_ORIGIN?: string
 }
 
 type Variables = {
@@ -28,12 +29,28 @@ const app = new Hono<{ Bindings: Bindings; Variables: Variables }>()
 
 // GLobal Middleware
 app.use('*', logger());
-app.use('*', cors());
 
-// Helper Drizzle ORM instance ke context
+// Batasi origin CORS. Set env CORS_ORIGIN (koma-separated) untuk production;
+// fallback ke origin localhost dev apabila tidak diset.
+app.use('*', cors({
+  origin: (origin, c) => {
+    const allowedOrigins = c.env.CORS_ORIGIN
+      ?.split(',')
+      .map((s: string) => s.trim())
+      .filter(Boolean) ?? ['http://localhost:5173', 'http://localhost:3000'];
+    return allowedOrigins.includes(origin) ? origin : undefined;
+  },
+}));
+
+// Helper Drizzle ORM instance ke context (dibuat sekali per env.DB, lalu di-cache)
+const dbCache = new WeakMap<D1Database, DrizzleD1Database<typeof schema>>();
 app.use('*', async (c, next) => {
-  const db = drizzle(c.env.DB, { schema })
-  c.set('db', db)
+  let db = dbCache.get(c.env.DB);
+  if (!db) {
+    db = drizzle(c.env.DB, { schema });
+    dbCache.set(c.env.DB, db);
+  }
+  c.set('db', db);
   await next()
 });
 
@@ -50,8 +67,8 @@ app.route('/api/v1/users/waste-log', wasteLogRoutes);
 
 // GLobal error Middleware
 app.onError((err, c) => {
-  console.error(`[ERROR] ${err.message}`);
-  return c.json(fail('D1_EXECUTION_ERROR', 'Terjadi kesalahan pada server', [err.message]), 500);
+  console.error(`[ERROR] ${err.message}`, err.stack);
+  return c.json(fail('D1_EXECUTION_ERROR', 'Terjadi kesalahan pada server'), 500);
 });
 
 // penanganan route tidak ditemukan (404)

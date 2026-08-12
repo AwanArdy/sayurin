@@ -1,4 +1,5 @@
-import { sqliteTable, text, integer, real } from 'drizzle-orm/sqlite-core';
+import { sqliteTable, text, integer, real, check, index } from 'drizzle-orm/sqlite-core';
+import { sql } from 'drizzle-orm';
 
 export const users = sqliteTable('users', {
   id: text('id').primaryKey(),
@@ -19,7 +20,10 @@ export const products = sqliteTable('products', {
   shelfLifeChillerDays: integer('shelf_life_chiller_days'),
   nutritionTags: text('nutrition_tags'), 
   storageTips: text('storage_tips'),
-}); //[cite: 2]
+}, (t) => [
+  // Jaga stok tidak pernah negatif di level database (anti oversell).
+  check('products_stock_non_negative', sql`${t.stock} >= 0`),
+]); //[cite: 2]
 
 export const recipes = sqliteTable('recipes', {
   id: text('id').primaryKey(),
@@ -37,7 +41,10 @@ export const recipeIngredients = sqliteTable('recipe_ingredients', {
   amountPerServing: real('amount_per_serving').notNull(),
   unit: text('unit'),
   isPantryStaple: integer('is_pantry_staple', { mode: 'boolean' }).default(false),
-}); //[cite: 2]
+}, (t) => [
+  index('recipe_ingredients_recipe_id_idx').on(t.recipeId),
+  index('recipe_ingredients_product_id_idx').on(t.productId),
+]); //[cite: 2]
 
 export const orders = sqliteTable('orders', {
   id: text('id').primaryKey(),
@@ -47,7 +54,9 @@ export const orders = sqliteTable('orders', {
   status: text('status').notNull().default('pending'),
   foodWasteSavedKg: real('food_waste_saved_kg'),
   createdAt: text('created_at').default('CURRENT_TIMESTAMP'),
-}); //[cite: 2]
+}, (t) => [
+  index('orders_user_id_idx').on(t.userId),
+]); //[cite: 2]
 
 export const orderItems = sqliteTable('order_items', {
   id: text('id').primaryKey(),
@@ -55,7 +64,10 @@ export const orderItems = sqliteTable('order_items', {
   productId: text('product_id').notNull().references(() => products.id),
   quantity: integer('quantity').notNull(),
   priceAtPurchase: integer('price_at_purchase').notNull(),
-}); //[cite: 2]
+}, (t) => [
+  index('order_items_order_id_idx').on(t.orderId),
+  index('order_items_product_id_idx').on(t.productId),
+]); //[cite: 2]
 
 export const userWasteLogs = sqliteTable('user_waste_logs', {
   id: text('id').primaryKey(),
@@ -63,4 +75,6 @@ export const userWasteLogs = sqliteTable('user_waste_logs', {
   foodWasteSavedKg: real('food_waste_saved_kg').default(0),
   plasticSavedPcs: integer('plastic_saved_pcs').default(0),
   moneySavedIdr: integer('money_saved_idr').default(0),
-}); //[cite: 2]
+}, (t) => [
+  index('user_waste_logs_user_id_idx').on(t.userId),
+]); //[cite: 2]

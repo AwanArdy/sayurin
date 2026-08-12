@@ -7,6 +7,9 @@ node_modules/
 *.log
 npm-debug.log*
 
+# Wrangler local secrets (Cloudflare Workers)
+.dev.vars
+
 # File sistem operasi
 .DS_Store
 Thumbs.db

@@ -6,8 +6,9 @@ DELETE FROM user_waste_logs;
 DELETE FROM users;
 
 -- 1. Seed Users
+-- password untuk test@mail.com: password123 (hash PBKDF2-SHA256, 100000 iterasi)
 INSERT INTO users (id, email, password_hash, name) 
-VALUES ('user-1', 'test@mail.com', 'hash123', 'Eco User Dummy');
+VALUES ('user-1', 'test@mail.com', 'pbkdf2-sha256$100000$245a99461726918474880a22c2611bd4$4c9610d09beeca49910f17aeb72ac4d409c0fb5113f0c0211db2eb4e051eaf93', 'Eco User Dummy');
 
 -- 2. Seed Products (Minimal 8 SKU)[cite: 3]
 INSERT INTO products (id, name, slug, price, unit, nutrition_tags) VALUES

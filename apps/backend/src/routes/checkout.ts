@@ -1,11 +1,20 @@
 import { Hono } from 'hono';
 import { type DrizzleD1Database } from 'drizzle-orm/d1';
+import { type BatchItem } from 'drizzle-orm/batch';
 import { zValidator } from '@hono/zod-validator';
 import { eq, inArray, sql } from 'drizzle-orm';
 import * as schema from '../schema';
-import { success, fail } from '../lib/response';
+import { success, fail, formatZodError } from '../lib/response';
 import { checkoutSchema } from '../validators/schema';
 import { authRequired } from '../middleware/auth';
+
+// Formula dampak waste V1 (dokumentasi: PRD Phase 8.4). Dihitung dari isi order.
+// - food waste: 0.5 kg per unit item yang dibeli
+// - plastik   : 2 pcs kemasan per unit item yang dibeli
+// - uang      : estimasi hemat 10% dari subtotal order
+const FOOD_WASTE_PER_UNIT_KG = 0.5;
+const PLASTIC_PER_UNIT_PCS = 2;
+const SAVINGS_RATE = 0.1;
 
 type Variables = {
   db: DrizzleD1Database<typeof schema>;
@@ -18,96 +27,140 @@ export const checkoutRoutes = new Hono<{ Variables: Variables }>();
 // Wajib login untuk checkout
 checkoutRoutes.use('*', authRequired);
 
-checkoutRoutes.post('/', zValidator('json', checkoutSchema), async (c) => {
+checkoutRoutes.post('/', zValidator('json', checkoutSchema, (result, c) => {
+  if (!result.success) return c.json(formatZodError(result.error), 400);
+}), async (c) => {
   const db = c.get('db');
   const userId = c.get('userId'); // Didapat dari middleware JWT[cite: 3]
   const { items, substitution_policy } = c.req.valid('json');
 
   const productIds = items.map(item => item.product_id);
+  const uniqueProductIds = Array.from(new Set(productIds));
 
-  // Ambil data produk berdasarkan ID yang dikirim[cite: 3]
-  const products = await db.select().from(schema.products).where(inArray(schema.products.id, productIds));
-
-  if (products.length !== productIds.length) {
-    return c.json(fail('NOT_FOUND', 'Ada produk yang tidak ditemukan di sistem'), 404); //[cite: 3]
+  if (uniqueProductIds.length !== productIds.length) {
+    return c.json(fail('VALIDATION_ERROR', 'Terdapat produk duplikat dalam pesanan'), 400);
   }
 
   let totalPrice = 0;
-  const orderItemsData = [];
-
-  // Validasi ketersediaan stok[cite: 3]
-  for (const item of items) {
-    const product = products.find(p => p.id === item.product_id);
-    
-    if (product!.stock < item.quantity) {
-      return c.json(fail('STOCK_OUT', `Stok ${product!.name} tidak mencukupi (Sisa: ${product!.stock})`, [product!.id]), 409); //[cite: 3]
-    }
-    
-    totalPrice += product!.price * item.quantity;
-
-    orderItemsData.push({
-      id: crypto.randomUUID(),
-      productId: product!.id,
-      quantity: item.quantity,
-      priceAtPurchase: product!.price
-    });
-  }
-
+  const mappedOrderItems: Array<{
+    id: string;
+    orderId: string;
+    productId: string;
+    quantity: number;
+    priceAtPurchase: number;
+  }> = [];
   const orderId = crypto.randomUUID();
 
   try {
-    // Jalankan transaksi Atomic Drizzle/D1[cite: 3]
-    await db.transaction(async (tx) => {
-      // 1. Buat data pesanan[cite: 3]
-      await tx.insert(schema.orders).values({
-        id: orderId,
-        userId,
-        totalPrice,
-        substitutionPolicy: substitution_policy,
-        status: 'pending',
-        foodWasteSavedKg: 0.5 // Estimasi statis untuk V1[cite: 3]
+    // Baca produk di luar batch (D1 batch hanya boleh berisi statement write)
+    const freshProducts = await db.select()
+      .from(schema.products)
+      .where(inArray(schema.products.id, uniqueProductIds));
+
+    if (freshProducts.length !== uniqueProductIds.length) {
+      return c.json(fail('NOT_FOUND', 'Ada produk yang tidak ditemukan di sistem'), 404);
+    }
+
+    // Validasi ketersediaan stok (jalur cepat; guard akhir oleh CHECK stock >= 0)
+    const stockOutIds: string[] = [];
+    for (const item of items) {
+      const product = freshProducts.find(p => p.id === item.product_id);
+
+      if (!product) {
+        return c.json(fail('NOT_FOUND', 'Ada produk yang tidak ditemukan di sistem'), 404);
+      }
+
+      if ((product.stock ?? 0) < item.quantity) {
+        stockOutIds.push(product.id);
+      }
+
+      totalPrice += product.price * item.quantity;
+      mappedOrderItems.push({
+        id: crypto.randomUUID(),
+        orderId,
+        productId: product.id,
+        quantity: item.quantity,
+        priceAtPurchase: product.price,
       });
+    }
 
-      // 2. Masukkan rincian item pesanan[cite: 3]
-      const mappedOrderItems = orderItemsData.map(oi => ({ ...oi, orderId }));
-      await tx.insert(schema.orderItems).values(mappedOrderItems);
+    if (stockOutIds.length > 0) {
+      return c.json(fail('STOCK_OUT', 'Ada produk dengan stok tidak mencukupi', stockOutIds), 409);
+    }
 
-      // 3. Kurangi stok produk[cite: 3]
-      for (const item of items) {
-        await tx.update(schema.products)
-          .set({ stock: sql`${schema.products.stock} - ${item.quantity}` })
-          .where(eq(schema.products.id, item.product_id));
-      }
+    // Siapkan statement write untuk dikelompokkan dalam satu batch atomik.
+    // D1 tidak mendukung BEGIN TRANSACTION; batch dieksekusi all-or-nothing.
+    const existingLog = await db.select()
+      .from(schema.userWasteLogs)
+      .where(eq(schema.userWasteLogs.userId, userId))
+      .get();
 
-      // 4. Update Waste Log (Phase 8.4)[cite: 3]
-      const existingLog = await tx.select().from(schema.userWasteLogs).where(eq(schema.userWasteLogs.userId, userId)).get();
-      
-      if (existingLog) {
-        // Jika sudah ada log, tambahkan valuenya
-        await tx.update(schema.userWasteLogs)
-          .set({
-            foodWasteSavedKg: (existingLog.foodWasteSavedKg || 0) + 0.5,
-            plasticSavedPcs: (existingLog.plasticSavedPcs || 0) + 2,
-            moneySavedIdr: (existingLog.moneySavedIdr || 0) + 5000
-          })
-          .where(eq(schema.userWasteLogs.userId, userId));
-      } else {
-        // Jika pengguna baru pertama kali belanja
-        await tx.insert(schema.userWasteLogs).values({
-          id: crypto.randomUUID(),
-          userId,
-          foodWasteSavedKg: 0.5,
-          plasticSavedPcs: 2,
-          moneySavedIdr: 5000
-        });
-      }
-    });
+    // Hitung dampak waste berdasarkan isi order aktual
+    const totalUnits = items.reduce((sum, item) => sum + item.quantity, 0);
+    const foodWasteSavedKg = FOOD_WASTE_PER_UNIT_KG * totalUnits;
+    const plasticSavedPcs = PLASTIC_PER_UNIT_PCS * totalUnits;
+    const moneySavedIdr = Math.round(totalPrice * SAVINGS_RATE);
+
+    const statements: BatchItem<'sqlite'>[] = [];
+
+    statements.push(db.insert(schema.orders).values({
+      id: orderId,
+      userId,
+      totalPrice,
+      substitutionPolicy: substitution_policy,
+      status: 'pending',
+      foodWasteSavedKg,
+      createdAt: new Date().toISOString(),
+    }));
+
+    statements.push(db.insert(schema.orderItems).values(mappedOrderItems));
+
+    // Kurangi stok. Jika hasilnya negatif, trigger/CHECK (stock >= 0) menolak dan
+    // seluruh batch di-rollback.
+    for (const item of items) {
+      statements.push(db.update(schema.products)
+        .set({ stock: sql`${schema.products.stock} - ${item.quantity}` })
+        .where(eq(schema.products.id, item.product_id)));
+    }
+
+    if (existingLog) {
+      statements.push(db.update(schema.userWasteLogs)
+        .set({
+          foodWasteSavedKg: (existingLog.foodWasteSavedKg || 0) + foodWasteSavedKg,
+          plasticSavedPcs: (existingLog.plasticSavedPcs || 0) + plasticSavedPcs,
+          moneySavedIdr: (existingLog.moneySavedIdr || 0) + moneySavedIdr,
+        })
+        .where(eq(schema.userWasteLogs.userId, userId)));
+    } else {
+      statements.push(db.insert(schema.userWasteLogs).values({
+        id: crypto.randomUUID(),
+        userId,
+        foodWasteSavedKg,
+        plasticSavedPcs,
+        moneySavedIdr,
+      }));
+    }
+
+    await db.batch(statements as [BatchItem<'sqlite'>, ...BatchItem<'sqlite'>[]]);
 
     return c.json(success({ orderId, totalPrice, status: 'pending' })); //[cite: 3]
-  } catch (error: any) {
-    return c.json(fail('D1_EXECUTION_ERROR', 'Gagal memproses transaksi checkout', [error.message]), 500); //[cite: 3]
+  } catch (error: unknown) {
+    // Kegagalan CHECK (stock >= 0) menandakan oversell yang lolos validasi awal.
+    if (isCheckConstraintError(error)) {
+      return c.json(fail('STOCK_OUT', 'Stok produk tidak mencukupi saat pemrosesan'), 409);
+    }
+
+    console.error('[CHECKOUT] Gagal memproses transaksi:', error);
+    return c.json(fail('D1_EXECUTION_ERROR', 'Gagal memproses transaksi checkout'), 500);
   }
 });
+
+// Deteksi kegagalan constraint CHECK saat batch dijalankan.
+const isCheckConstraintError = (error: unknown): boolean => {
+  const message = error instanceof Error ? error.message : String(error);
+  return /products_stock_non_negative|check constraint|constraint.+check|CHECK\s*\(/i.test(message)
+    || (/(constraint|check)/i.test(message) && /stock/i.test(message));
+};
 
 
 // --- ROUTER ORDERS (/api/v1/orders) ---
