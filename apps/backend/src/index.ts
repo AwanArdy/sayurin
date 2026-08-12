@@ -11,6 +11,8 @@ import { fail } from './lib/response'
 import productsRoutes from './routes/products';
 import recipesRoutes from './routes/recipes';
 import authRoutes from './routes/auth';
+import { checkoutRoutes, ordersRoutes } from './routes/checkout';
+import wasteLogRoutes from './routes/waste-log';
 
 type Bindings = {
   DB: D1Database
@@ -42,6 +44,9 @@ app.get('/health', (c) => c.json({ ok: true }));
 app.route('/api/v1/products', productsRoutes);
 app.route('/api/v1/recipes', recipesRoutes);
 app.route('/api/v1/auth', authRoutes);
+app.route('/api/v1/checkout', checkoutRoutes);
+app.route('/api/v1/orders', ordersRoutes);
+app.route('/api/v1/users/waste-log', wasteLogRoutes);
 
 // GLobal error Middleware
 app.onError((err, c) => {
