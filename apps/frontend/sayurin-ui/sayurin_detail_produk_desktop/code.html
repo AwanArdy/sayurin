@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bayam Organik - Sayurin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary": "#ffffff",
+                      "surface": "#f9faf7",
+                      "on-tertiary": "#ffffff",
+                      "surface-tint": "#376757",
+                      "on-secondary-container": "#606365",
+                      "tertiary-fixed": "#ffdad5",
+                      "inverse-surface": "#2e312f",
+                      "on-secondary-fixed-variant": "#444749",
+                      "primary-fixed-dim": "#9ed1bd",
+                      "secondary-fixed-dim": "#c5c6c8",
+                      "on-surface-variant": "#404945",
+                      "on-primary-fixed": "#002117",
+                      "tertiary-fixed-dim": "#fab6ac",
+                      "surface-container": "#edeeeb",
+                      "on-tertiary-fixed-variant": "#693a33",
+                      "on-error": "#ffffff",
+                      "background": "#f9faf7",
+                      "inverse-on-surface": "#f0f1ee",
+                      "inverse-primary": "#9ed1bd",
+                      "surface-container-high": "#e7e8e6",
+                      "primary": "#003629",
+                      "on-primary-fixed-variant": "#1d4f40",
+                      "on-tertiary-container": "#e4a399",
+                      "primary-container": "#1b4d3e",
+                      "error": "#ba1a1a",
+                      "error-container": "#ffdad6",
+                      "surface-container-highest": "#e2e3e0",
+                      "surface-dim": "#d9dad8",
+                      "surface-bright": "#f9faf7",
+                      "secondary-container": "#dee0e2",
+                      "tertiary": "#4c221c",
+                      "surface-variant": "#e2e3e0",
+                      "on-background": "#191c1b",
+                      "surface-container-low": "#f3f4f1",
+                      "tertiary-container": "#673831",
+                      "on-tertiary-fixed": "#34100b",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-fixed": "#e1e2e4",
+                      "on-error-container": "#93000a",
+                      "on-primary-container": "#8abda9",
+                      "on-secondary-fixed": "#191c1e",
+                      "secondary": "#5c5f60",
+                      "outline": "#707974",
+                      "outline-variant": "#c0c9c3",
+                      "primary-fixed": "#baeed9",
+                      "on-surface": "#191c1b",
+                      "on-secondary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "1rem",
+                      "lg": "2rem",
+                      "xl": "3rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "8px",
+                      "section-gap": "48px",
+                      "container-margin": "24px",
+                      "gutter": "16px"
+              },
+              "fontFamily": {
+                      "body-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-sm": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-lg-mobile": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label-caps": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-md": [
+                              "Plus Jakarta Sans"
+                      ]
+              },
+              "fontSize": {
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+      </style>
+</head>
+<body class="bg-surface text-on-surface font-body-lg min-h-screen flex flex-col pb-24 md:pb-0 relative">
+<!-- Top Navigation Bar (Hidden on Mobile) -->
+<nav class="hidden md:flex flex-col bg-surface shadow-sm dark:shadow-none docked full-width top-0 sticky z-50 transition-all duration-200 ease-in-out shadow-[0px_10px_30px_rgba(27,77,62,0.05)]">
+<div class="flex justify-between items-center px-container-margin w-full max-w-7xl mx-auto h-20">
+<div class="flex items-center gap-12">
+<a class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed" href="#">Sayurin</a>
+<div class="flex items-center gap-6">
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary-container transition-colors font-body-lg text-body-lg" href="#">Beranda</a>
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary-container transition-colors font-body-lg text-body-lg" href="#">Resep</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-body-lg text-body-lg" href="#">Produk</a>
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary-container transition-colors font-body-lg text-body-lg" href="#">Dashboard</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-lowest border border-primary/10 rounded-full focus:border-primary focus:ring-1 focus:ring-primary outline-none font-body-sm text-body-sm text-on-surface transition-all w-64" placeholder="Cari sayur segar..." type="text"/>
+</div>
+<button class="p-2 text-primary dark:text-primary-fixed hover:bg-surface-container-low rounded-full transition-colors relative">
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">shopping_cart</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-7xl mx-auto px-container-margin py-8 md:py-section-gap">
+<!-- Breadcrumbs -->
+<div class="flex items-center gap-2 mb-8 text-secondary font-body-sm text-body-sm overflow-x-auto whitespace-nowrap hide-scrollbar">
+<a class="hover:text-primary-container transition-colors" href="#">Beranda</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<a class="hover:text-primary-container transition-colors" href="#">Sayur Daun</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-primary font-bold">Bayam Organik</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
+<!-- Left Column: Product Imagery -->
+<div class="flex flex-col gap-4">
+<div class="bg-surface-container-lowest rounded-xl shadow-[0px_10px_30px_rgba(27,77,62,0.05)] aspect-square overflow-hidden group">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="A highly detailed close-up shot of fresh, vibrant green organic spinach leaves bunched together. The spinach is brightly lit with natural, soft sunlight emphasizing its crisp texture and water droplets. The background is a clean, minimalist pure white (#FFFFFF) studio setting, aligning with a premium, organic grocery aesthetic. The overall mood is fresh, healthy, and pristine." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCbdlLgVAwc19gqY75lS70fk2LRpS42IUaioOmqqh8tt98sjbPccoIifRP77ilou2MY8u32NgsY4MLxkWgj6e80RUSHLrxPS5HAP6T8qUDbw0oWgpwGsd2uEv_uJc501120azbWV2x8sKI4LL7OUXIcDB4RHmUrsOsNYYAGDD1IGrpo_WHwgxdOQFgxZURbaj89oJIggo3NzY5-bRkABXkDNWV2hOjS0aPxDPfR33LxxikE0GpmOqUDbQ')"></div>
+</div>
+<!-- Thumbnails -->
+<div class="grid grid-cols-4 gap-4">
+<div class="bg-surface-container-lowest rounded-lg border-2 border-primary aspect-square overflow-hidden cursor-pointer">
+<div class="w-full h-full bg-cover bg-center" data-alt="A close up thumbnail image of fresh organic spinach bunch. Bright natural lighting. Minimalist white background." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBkiopLB4ywtpWpjsAYGGQy9c0S_DsirXBDqrJ11M0pkBsbRJRXY6oC4gTUvDZzWRBnQHl6b-h0sEazHf9BdlTMozIoDWkkhDX5t1jFeLzZ096WeawMkJxJBkJH3txtaco3Al-5KiQPAT_-TN24PjYSOc7n8R9tD58Ht0xydp_rtAn0cKh4hkWUtSGwL1X4MYh4djOLVlUEG_nZryQYYpwVITTaVw54hxqzaY2GjBXn1sLMCyBeInybDQ')"></div>
+</div>
+<div class="bg-surface-container-lowest rounded-lg border border-primary/10 opacity-70 hover:opacity-100 hover:border-primary/50 transition-all aspect-square overflow-hidden cursor-pointer">
+<div class="w-full h-full bg-cover bg-center" data-alt="A close up thumbnail image showing the stems of fresh organic spinach. Bright natural lighting. Minimalist white background." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDw-hE3tpbpalTaSV5u4f526jw89m-Ws5HUY_T0h_SG0D7ggF8HFxn2Nf3dWlQxCqg6siMO3pJkHItiAAnBhKwO26MeQYukcyul9oQfxZ63RfOyEsOHMCj2uFp95bn7QSczus8QsabN9QpnU4nv8izelhYS-9crdZapnvE06vEX7nGb4dhQvn3hTlW7T8cMF2x7a6tY7kS6CdrbtuQjKm6Qq6f4eClEV9nrbum0I5Gmt_p6_K4XF69yPg')"></div>
+</div>
+<div class="bg-surface-container-lowest rounded-lg border border-primary/10 opacity-70 hover:opacity-100 hover:border-primary/50 transition-all aspect-square overflow-hidden cursor-pointer">
+<div class="w-full h-full bg-cover bg-center" data-alt="A close up thumbnail image showing a single perfect green spinach leaf with water drops. Bright natural lighting. Minimalist white background." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAaEjPGIbMBGD1nipGAqsId9r9KJGdWagxYNf-YUzRRoRAvzME8M_QneAwlOE0tYwhNDWMVq0Fu10_aUgqWqKjEZuh7d5CmAf6vUFasj6I8P_cTVTBfQIzmTvkI3dPhCnewXBpAnZ2iWs2Z9sRkenWrQl0BChRK4L0K7kTgf8V66icup3h--inVsc2ZYrnaEIdL73pSQZ3_fYYMg46r90ORadBop87OFkHmHRZZ5xKmSpWW3Kv4p9enFg')"></div>
+</div>
+</div>
+</div>
+<!-- Right Column: Product Details -->
+<div class="flex flex-col">
+<!-- Heading & Price -->
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-2">Bayam Organik</h1>
+<p class="font-headline-md text-headline-md text-primary mb-6">Rp 12.500 <span class="text-secondary font-body-sm text-body-sm font-normal">/ ikat (250g)</span></p>
+<!-- Nutrition Badges -->
+<div class="flex flex-wrap gap-2 mb-8">
+<span class="px-3 py-1 rounded-full border-2 border-primary text-primary font-label-caps text-label-caps bg-surface-container-lowest">Tinggi Serat</span>
+<span class="px-3 py-1 rounded-full border-2 border-primary text-primary font-label-caps text-label-caps bg-surface-container-lowest">Vitamin C</span>
+<span class="px-3 py-1 rounded-full border-2 border-primary text-primary font-label-caps text-label-caps bg-surface-container-lowest">Zat Besi</span>
+</div>
+<!-- Description -->
+<div class="mb-8 font-body-lg text-body-lg text-on-surface-variant">
+<p class="mb-4">Bayam organik segar yang dipanen langsung dari mitra petani lokal kami setiap pagi. Ditanam sepenuhnya tanpa pestisida sintetis, menjaga kualitas nutrisi alami dan rasa yang lebih manis serta tekstur yang renyah.</p>
+</div>
+<!-- Freshness Tracker Card -->
+<div class="bg-surface-container-lowest rounded-xl border-2 border-primary p-6 mb-8 shadow-[0px_10px_30px_rgba(27,77,62,0.05)]">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-primary text-[24px]">schedule</span>
+<h3 class="font-headline-md text-headline-md text-primary">Indikator Kesegaran &amp; Masa Simpan</h3>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="bg-surface rounded-lg border border-primary/20 p-4 flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-secondary mb-2">device_thermostat</span>
+<span class="font-label-caps text-label-caps text-secondary mb-1">Suhu Ruang</span>
+<span class="font-body-lg text-body-lg text-primary font-bold">2-3 Hari</span>
+</div>
+<div class="bg-surface rounded-lg border border-primary/20 p-4 flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-secondary mb-2">ac_unit</span>
+<span class="font-label-caps text-label-caps text-secondary mb-1">Kulkas / Chiller</span>
+<span class="font-body-lg text-body-lg text-primary font-bold">7-10 Hari</span>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-primary/10 font-body-sm text-body-sm text-on-surface-variant flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] text-primary shrink-0 mt-0.5">info</span>
+<p><strong>Saran Penyimpanan:</strong> Simpan di kulkas dalam wadah tertutup yang dialasi kertas tisu untuk menyerap kelembapan berlebih, memastikan bayam tetap segar lebih lama.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Sticky Bottom Action Bar -->
+<div class="fixed bottom-0 left-0 w-full z-50 flex justify-between items-center px-container-margin py-4 bg-surface-container-lowest dark:bg-surface-container shadow-[0px_-10px_30px_rgba(27,77,62,0.05)] border-t border-primary/10 rounded-t-lg transition-transform md:relative md:shadow-none md:border-none md:bg-transparent md:px-0 md:py-0 md:mt-8 md:max-w-7xl md:mx-auto">
+<div class="flex items-center gap-4 w-full md:w-auto md:ml-auto">
+<!-- Quantity Stepper -->
+<div class="flex items-center bg-surface-container-lowest border border-primary/20 rounded-full h-12 w-32 md:w-40 justify-between px-2 shrink-0">
+<button aria-label="Decrease quantity" class="w-8 h-8 flex items-center justify-center rounded-full text-primary hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[20px]">remove</span>
+</button>
+<span class="font-body-lg text-body-lg font-bold text-on-surface">1</span>
+<button aria-label="Increase quantity" class="w-8 h-8 flex items-center justify-center rounded-full text-primary hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+<!-- Add to Cart Button -->
+<button class="bg-primary text-on-primary rounded-full px-6 h-12 flex-grow md:flex-grow-0 flex items-center justify-center gap-2 hover:opacity-90 transition-opacity font-body-lg text-body-lg font-bold scale-95 active:scale-100 shadow-[0px_10px_30px_rgba(27,77,62,0.15)] hover:-translate-y-0.5">
+<span class="material-symbols-outlined text-[20px]">add_shopping_cart</span>
+<span>Tambah ke Keranjang</span>
+</button>
+</div>
+</div>
+</body></html>

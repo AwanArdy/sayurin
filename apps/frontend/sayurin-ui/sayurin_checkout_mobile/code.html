@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sayurin - Checkout</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "inverse-on-surface": "#ebf2f4",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed": "#191c1e",
+                        "on-surface": "#161d1f",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#e1e2e4",
+                        "on-tertiary-container": "#b1b2b2",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#dde4e6",
+                        "on-secondary-container": "#606365",
+                        "background": "#f4fafd",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#e8eff1",
+                        "primary-container": "#1b4d3e",
+                        "on-primary-fixed": "#002117",
+                        "on-surface-variant": "#404945",
+                        "tertiary-container": "#434545",
+                        "on-background": "#161d1f",
+                        "surface-container-low": "#eef5f7",
+                        "secondary-fixed-dim": "#c5c6c8",
+                        "surface-variant": "#dde4e6",
+                        "surface-container-high": "#e2e9ec",
+                        "on-primary-container": "#8abda9",
+                        "primary-fixed": "#baeed9",
+                        "secondary-container": "#dee0e2",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#5c5f60",
+                        "surface-dim": "#d4dbdd",
+                        "on-primary-fixed-variant": "#1d4f40",
+                        "outline": "#707974",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "primary-fixed-dim": "#9ed1bd",
+                        "surface": "#f4fafd",
+                        "inverse-primary": "#9ed1bd",
+                        "surface-bright": "#f4fafd",
+                        "on-secondary-fixed-variant": "#444749",
+                        "inverse-surface": "#2b3234",
+                        "outline-variant": "#c0c9c3",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#e2e2e2",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "primary": "#003629",
+                        "tertiary": "#2d2f2f",
+                        "surface-tint": "#376757"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "container-max": "1200px",
+                        "xs": "4px",
+                        "xl": "40px",
+                        "gutter": "24px",
+                        "unit": "4px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "label-sm": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "label-md": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-[#F4F5F7] text-on-surface font-body-md min-h-screen flex flex-col antialiased">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-inverse-surface docked full-width top-0 sticky z-50">
+<div class="flex justify-between items-center px-margin-mobile md:px-lg py-md max-w-container-max mx-auto w-full">
+<div class="flex items-center gap-sm">
+<img alt="Sayurin Logo" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLtGhXcDphYCwoS6xof6wPej8KBF_MR7Qgccyi22BRx8Y-0dhqtsnZltAvjhcsI4gtUfFj1aBajp1KOQ5ZAP0T3KrC_tclNzF0pB74GvmlNQvCrx_hxLjweFHe0DuyNFNUwB1DohxKbrHqBXGsDC19ECOfC9MD1PvpsqauQAhiu6g0GEMu5SjrcO1vRaxNUOwSymixeiBQn9eQMJb1SAlISZlwXX-7hP1HrKcMc2C7JydBl9YHsgbsErZgrG"/>
+<span class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed">Sayurin</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed">Checkout</span>
+</div>
+<div class="flex items-center gap-sm">
+<button aria-label="Secure Checkout" class="p-xs text-primary dark:text-primary-fixed hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined" data-icon="lock">lock</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow px-margin-mobile py-lg max-w-container-max mx-auto w-full flex flex-col gap-lg">
+<!-- Shipping Summary -->
+<section class="bg-[#FFFFFF] p-[24px] rounded-[1.5rem] shadow-[0px_4px_20px_rgba(0,0,0,0.04)] border border-[#E2E4E9]">
+<div class="flex justify-between items-center mb-md">
+<h2 class="text-headline-sm font-headline-md text-[#1B4D3E]">Shipping to</h2>
+<button class="text-label-md font-label-md text-[#1B4D3E] underline">Edit</button>
+</div>
+<div class="flex gap-md items-start">
+<span class="material-symbols-outlined text-[#1B4D3E] mt-1" data-icon="home">home</span>
+<div>
+<p class="text-body-md font-body-md font-bold">Home</p>
+<p class="text-body-md font-body-md text-secondary mt-1">123 Green Avenue, Apt 4B<br/>Jakarta Selatan, 12345</p>
+</div>
+</div>
+</section>
+<!-- Payment Summary -->
+<section class="bg-[#FFFFFF] p-[24px] rounded-[1.5rem] shadow-[0px_4px_20px_rgba(0,0,0,0.04)] border border-[#E2E4E9]">
+<div class="flex justify-between items-center mb-md">
+<h2 class="text-headline-sm font-headline-md text-[#1B4D3E]">Payment Method</h2>
+<button class="text-label-md font-label-md text-[#1B4D3E] underline">Edit</button>
+</div>
+<div class="flex gap-md items-center">
+<span class="material-symbols-outlined text-[#1B4D3E]" data-icon="credit_card">credit_card</span>
+<div>
+<p class="text-body-md font-body-md font-bold">Gopay</p>
+<p class="text-body-md font-body-md text-secondary">Balance: Rp 250.000</p>
+</div>
+</div>
+</section>
+<!-- Substitution Policy -->
+<section class="bg-[#FFFFFF] p-[24px] rounded-[1.5rem] shadow-[0px_4px_20px_rgba(0,0,0,0.04)] border border-[#E2E4E9]">
+<h2 class="text-headline-sm font-headline-md text-[#1B4D3E] mb-sm">Automatic Substitution</h2>
+<p class="text-body-md font-body-md text-secondary mb-md">If an item is out of stock, what should we do?</p>
+<div class="flex flex-col gap-sm">
+<!-- Selected Option -->
+<label class="flex items-center gap-md p-[19px] rounded-[1.5rem] bg-[#F4F5F7] border-2 border-[#1B4D3E] cursor-pointer">
+<input checked="" class="sr-only" name="substitution" type="radio" value="best_match"/>
+<div class="w-5 h-5 rounded-full border-2 border-[#1B4D3E] flex items-center justify-center">
+<div class="w-2.5 h-2.5 rounded-full bg-[#1B4D3E]"></div>
+</div>
+<div>
+<p class="text-body-md font-body-md font-bold text-[#1B4D3E]">Best Match</p>
+<p class="text-label-sm font-label-sm text-secondary">We'll find a similar product of equal or better quality.</p>
+</div>
+</label>
+<!-- Unselected Option 1 -->
+<label class="flex items-center gap-md p-[20px] rounded-[1.5rem] bg-[#FFFFFF] border border-[#E2E4E9] cursor-pointer hover:shadow-[0px_4px_20px_rgba(0,0,0,0.04)] transition-shadow">
+<input class="sr-only" name="substitution" type="radio" value="contact_me"/>
+<div class="w-5 h-5 rounded-full border-2 border-[#E2E4E9] flex items-center justify-center">
+</div>
+<div>
+<p class="text-body-md font-body-md font-bold text-on-surface">Contact Me</p>
+<p class="text-label-sm font-label-sm text-secondary">Call or text me to confirm a replacement.</p>
+</div>
+</label>
+<!-- Unselected Option 2 -->
+<label class="flex items-center gap-md p-[20px] rounded-[1.5rem] bg-[#FFFFFF] border border-[#E2E4E9] cursor-pointer hover:shadow-[0px_4px_20px_rgba(0,0,0,0.04)] transition-shadow">
+<input class="sr-only" name="substitution" type="radio" value="cancel_item"/>
+<div class="w-5 h-5 rounded-full border-2 border-[#E2E4E9] flex items-center justify-center">
+</div>
+<div>
+<p class="text-body-md font-body-md font-bold text-on-surface">Cancel Item</p>
+<p class="text-label-sm font-label-sm text-secondary">Don't replace, just remove it from the order.</p>
+</div>
+</label>
+</div>
+</section>
+<!-- Order Summary -->
+<section class="bg-[#FFFFFF] p-[24px] rounded-[1.5rem] shadow-[0px_4px_20px_rgba(0,0,0,0.04)] border border-[#E2E4E9]">
+<h2 class="text-headline-sm font-headline-md text-[#1B4D3E] mb-md">Order Summary</h2>
+<div class="flex flex-col gap-sm mb-lg">
+<div class="flex justify-between items-center text-body-md font-body-md">
+<span class="text-secondary">Subtotal (3 items)</span>
+<span>Rp 85.000</span>
+</div>
+<div class="flex justify-between items-center text-body-md font-body-md">
+<span class="text-secondary">Delivery Fee</span>
+<span>Rp 15.000</span>
+</div>
+<div class="flex justify-between items-center text-body-md font-body-md">
+<span class="text-secondary">Eco-Packaging Fee</span>
+<span>Rp 2.000</span>
+</div>
+<div class="w-full h-px bg-[#E2E4E9] my-sm"></div>
+<div class="flex justify-between items-center text-headline-sm font-headline-md text-[#1B4D3E]">
+<span>Total</span>
+<span>Rp 102.000</span>
+</div>
+</div>
+<button class="w-full bg-[#1B4D3E] text-[#FFFFFF] text-body-md font-body-md font-bold py-md rounded-xl hover:opacity-90 transition-opacity active:scale-95 duration-100 flex items-center justify-center gap-sm">
+<span>Bayar &amp; Buat Pesanan</span>
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</section>
+</main>
+<script>
+        // Simple radio button logic for visual update
+        document.querySelectorAll('input[name="substitution"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                // Reset all labels
+                document.querySelectorAll('input[name="substitution"]').forEach(r => {
+                    const label = r.closest('label');
+                    const circleOuter = label.querySelector('.w-5');
+                    
+                    label.className = 'flex items-center gap-md p-[20px] rounded-[1.5rem] bg-[#FFFFFF] border border-[#E2E4E9] cursor-pointer hover:shadow-[0px_4px_20px_rgba(0,0,0,0.04)] transition-shadow';
+                    circleOuter.className = 'w-5 h-5 rounded-full border-2 border-[#E2E4E9] flex items-center justify-center';
+                    circleOuter.innerHTML = '';
+                    label.querySelector('.font-bold').classList.remove('text-[#1B4D3E]');
+                    label.querySelector('.font-bold').classList.add('text-on-surface');
+                });
+
+                // Style selected label
+                if(this.checked) {
+                    const label = this.closest('label');
+                    const circleOuter = label.querySelector('.w-5');
+                    
+                    label.className = 'flex items-center gap-md p-[19px] rounded-[1.5rem] bg-[#F4F5F7] border-2 border-[#1B4D3E] cursor-pointer';
+                    circleOuter.className = 'w-5 h-5 rounded-full border-2 border-[#1B4D3E] flex items-center justify-center';
+                    circleOuter.innerHTML = '<div class="w-2.5 h-2.5 rounded-full bg-[#1B4D3E]"></div>';
+                    label.querySelector('.font-bold').classList.remove('text-on-surface');
+                    label.querySelector('.font-bold').classList.add('text-[#1B4D3E]');
+                }
+            });
+        });
+    </script>
+</body></html>

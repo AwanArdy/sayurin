@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sayurin - Kebijakan Substitusi Otomatis</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config injected from system prompt -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#9ed1bd",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#5c5f60",
+                        "on-background": "#161d1f",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#444749",
+                        "surface-dim": "#d4dbdd",
+                        "tertiary": "#2d2f2f",
+                        "on-error-container": "#93000a",
+                        "on-surface-variant": "#404945",
+                        "surface-container-high": "#e2e9ec",
+                        "surface-tint": "#376757",
+                        "secondary-fixed-dim": "#c5c6c8",
+                        "on-primary-fixed-variant": "#1d4f40",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "tertiary-container": "#434545",
+                        "inverse-on-surface": "#ebf2f4",
+                        "secondary-fixed": "#e1e2e4",
+                        "surface-container": "#e8eff1",
+                        "surface-container-low": "#eef5f7",
+                        "on-secondary-container": "#606365",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "primary": "#003629",
+                        "on-tertiary": "#ffffff",
+                        "outline-variant": "#c0c9c3",
+                        "on-surface": "#161d1f",
+                        "on-secondary-fixed": "#191c1e",
+                        "on-primary-fixed": "#002117",
+                        "inverse-surface": "#2b3234",
+                        "background": "#f4fafd",
+                        "on-primary-container": "#8abda9",
+                        "surface": "#f4fafd",
+                        "surface-variant": "#dde4e6",
+                        "on-tertiary-container": "#b1b2b2",
+                        "secondary-container": "#dee0e2",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "primary-fixed": "#baeed9",
+                        "tertiary-fixed": "#e2e2e2",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-bright": "#f4fafd",
+                        "primary-container": "#1b4d3e",
+                        "surface-container-highest": "#dde4e6",
+                        "error-container": "#ffdad6",
+                        "outline": "#707974",
+                        "inverse-primary": "#9ed1bd"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "margin-mobile": "16px",
+                        "lg": "24px",
+                        "gutter": "24px",
+                        "sm": "8px",
+                        "xl": "40px",
+                        "md": "16px",
+                        "xs": "4px",
+                        "container-max": "1200px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "label-sm": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background font-body-md text-on-surface antialiased">
+<!-- Modal Overlay -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-margin-mobile" style="background-color: rgba(27, 77, 62, 0.4);">
+<!-- Modal Card -->
+<div class="bg-surface-container-lowest w-full max-w-md rounded-[1.5rem] flex flex-col max-h-[90vh] shadow-[0px_12px_40px_rgba(0,0,0,0.08)] overflow-hidden">
+<!-- Sticky Header -->
+<div class="sticky top-0 bg-surface-container-lowest border-b-2 border-primary-container px-lg py-md flex items-center justify-between z-10 shrink-0">
+<h2 class="text-primary-container font-headline-md text-headline-md">Kebijakan Substitusi Otomatis</h2>
+<button class="text-primary-container hover:bg-secondary-fixed p-sm rounded-full transition-colors flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-primary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">close</span>
+</button>
+</div>
+<!-- Scrollable Content -->
+<div class="p-lg overflow-y-auto flex-grow flex flex-col gap-lg">
+<!-- Intro Text -->
+<p class="text-primary-container font-body-md text-body-md">
+                    Jika produk sayuran yang Anda pesan kehabisan stok, silakan pilih bagaimana Anda ingin kami menangani penggantiannya.
+                </p>
+<!-- Radio Group (Selection Cards) -->
+<div aria-labelledby="substitution-policy-label" class="flex flex-col gap-md" role="radiogroup">
+<h3 class="sr-only" id="substitution-policy-label">Pilihan Substitusi</h3>
+<!-- Option 1: Selected State -->
+<label class="relative flex cursor-pointer rounded-xl border-2 border-primary-container bg-surface p-[19px] shadow-[0px_4px_20px_rgba(0,0,0,0.04)] focus-within:ring-2 focus-within:ring-primary-container focus-within:ring-offset-2 transition-all">
+<div class="flex w-full items-start gap-md">
+<div class="flex h-6 items-center shrink-0">
+<input checked="" class="h-5 w-5 border-primary-container text-primary-container focus:ring-primary-container bg-surface-container-lowest" id="sub-auto" name="substitution-choice" type="radio"/>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary-container block mb-xs">Ganti Otomatis dengan Sayur Setara</span>
+<span class="font-body-sm text-body-sm text-primary-container block">
+                                    Sistem akan mencarikan produk pengganti dengan jenis, kualitas, dan harga yang paling mendekati produk awal.
+                                </span>
+</div>
+</div>
+</label>
+<!-- Option 2: Unselected State -->
+<label class="relative flex cursor-pointer rounded-xl border border-secondary-fixed bg-surface-container-lowest p-[20px] hover:shadow-[0px_4px_20px_rgba(0,0,0,0.04)] focus-within:ring-2 focus-within:ring-primary-container focus-within:ring-offset-2 transition-all">
+<div class="flex w-full items-start gap-md">
+<div class="flex h-6 items-center shrink-0">
+<input class="h-5 w-5 border-outline text-primary-container focus:ring-primary-container bg-surface-container-lowest" id="sub-whatsapp" name="substitution-choice" type="radio"/>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface block mb-xs">Konfirmasi via WhatsApp</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">
+                                    Kurir atau tim kami akan menghubungi Anda melalui WhatsApp untuk mendiskusikan opsi penggantian sebelum mengirim.
+                                </span>
+</div>
+</div>
+</label>
+<!-- Option 3: Unselected State -->
+<label class="relative flex cursor-pointer rounded-xl border border-secondary-fixed bg-surface-container-lowest p-[20px] hover:shadow-[0px_4px_20px_rgba(0,0,0,0.04)] focus-within:ring-2 focus-within:ring-primary-container focus-within:ring-offset-2 transition-all">
+<div class="flex w-full items-start gap-md">
+<div class="flex h-6 items-center shrink-0">
+<input class="h-5 w-5 border-outline text-primary-container focus:ring-primary-container bg-surface-container-lowest" id="sub-refund" name="substitution-choice" type="radio"/>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface block mb-xs">Refund Otomatis ke Saldo E-Wallet</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">
+                                    Dana untuk produk yang kosong akan otomatis dikembalikan ke saldo e-wallet Anda tanpa penggantian barang.
+                                </span>
+</div>
+</div>
+</label>
+</div>
+<!-- Callout Note -->
+<div class="bg-surface p-md rounded-lg flex gap-sm items-start border border-secondary-fixed">
+<span class="material-symbols-outlined text-primary-container shrink-0" style="font-variation-settings: 'FILL' 1;">eco</span>
+<p class="text-primary-container font-label-sm text-label-sm mt-[2px]">
+                        Anda bisa mengubah pengaturan ini kapan saja sebelum pesanan diproses.
+                    </p>
+</div>
+</div>
+<!-- Sticky Footer -->
+<div class="sticky bottom-0 bg-surface-container-lowest border-t-2 border-primary-container p-lg flex flex-col gap-sm shrink-0">
+<button class="w-full bg-primary-container hover:bg-primary text-on-primary font-label-md text-label-md py-md rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-primary-container focus:ring-offset-2 shadow-[0px_4px_20px_rgba(0,0,0,0.04)] hover:shadow-[0px_8px_30px_rgba(0,0,0,0.08)]">
+                    Simpan Pengaturan
+                </button>
+<button class="w-full bg-surface-container-lowest hover:bg-surface text-primary-container border border-primary-container font-label-md text-label-md py-md rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-primary-container focus:ring-offset-2">
+                    Batal
+                </button>
+</div>
+</div>
+</div>
+<!-- Script to handle custom radio styling selection -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const radios = document.querySelectorAll('input[name="substitution-choice"]');
+            
+            radios.forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    // Reset all
+                    radios.forEach(r => {
+                        const label = r.closest('label');
+                        label.className = "relative flex cursor-pointer rounded-xl border border-secondary-fixed bg-surface-container-lowest p-[20px] hover:shadow-[0px_4px_20px_rgba(0,0,0,0.04)] focus-within:ring-2 focus-within:ring-primary-container focus-within:ring-offset-2 transition-all";
+                        
+                        const title = label.querySelector('.font-label-md');
+                        const desc = label.querySelector('.font-body-sm');
+                        title.classList.remove('text-primary-container');
+                        title.classList.add('text-on-surface');
+                        desc.classList.remove('text-primary-container');
+                        desc.classList.add('text-on-surface-variant');
+                    });
+
+                    // Set selected
+                    if (e.target.checked) {
+                        const selectedLabel = e.target.closest('label');
+                        selectedLabel.className = "relative flex cursor-pointer rounded-xl border-2 border-primary-container bg-surface p-[19px] shadow-[0px_4px_20px_rgba(0,0,0,0.04)] focus-within:ring-2 focus-within:ring-primary-container focus-within:ring-offset-2 transition-all";
+                        
+                        const title = selectedLabel.querySelector('.font-label-md');
+                        const desc = selectedLabel.querySelector('.font-body-sm');
+                        title.classList.add('text-primary-container');
+                        title.classList.remove('text-on-surface');
+                        desc.classList.add('text-primary-container');
+                        desc.classList.remove('text-on-surface-variant');
+                    }
+                });
+            });
+        });
+    </script>
+</body></html>

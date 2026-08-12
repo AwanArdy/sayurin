@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sayurin - Cart Drawer</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#e2e2e2",
+                        "surface-dim": "#d4dbdd",
+                        "surface-tint": "#376757",
+                        "background": "#f4fafd",
+                        "outline-variant": "#c0c9c3",
+                        "secondary-container": "#dee0e2",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#1d4f40",
+                        "on-secondary-fixed-variant": "#444749",
+                        "primary-fixed": "#baeed9",
+                        "secondary-fixed-dim": "#c5c6c8",
+                        "surface-variant": "#dde4e6",
+                        "surface-container-highest": "#dde4e6",
+                        "primary": "#003629",
+                        "on-surface": "#161d1f",
+                        "on-surface-variant": "#404945",
+                        "surface": "#f4fafd",
+                        "secondary": "#5c5f60",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "primary-fixed-dim": "#9ed1bd",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed": "#191c1e",
+                        "tertiary": "#2d2f2f",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#2b3234",
+                        "secondary-fixed": "#e1e2e4",
+                        "on-primary-container": "#8abda9",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "primary-container": "#1b4d3e",
+                        "surface-container": "#e8eff1",
+                        "on-secondary-container": "#606365",
+                        "on-primary": "#ffffff",
+                        "on-background": "#161d1f",
+                        "on-primary-fixed": "#002117",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#eef5f7",
+                        "inverse-on-surface": "#ebf2f4",
+                        "surface-container-high": "#e2e9ec",
+                        "surface-bright": "#f4fafd",
+                        "on-tertiary-container": "#b1b2b2",
+                        "on-error": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#9ed1bd",
+                        "tertiary-container": "#434545",
+                        "outline": "#707974",
+                        "on-tertiary-fixed": "#1a1c1c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "gutter": "24px",
+                        "lg": "24px",
+                        "xl": "40px",
+                        "md": "16px",
+                        "container-max": "1200px",
+                        "margin-mobile": "16px",
+                        "xs": "4px",
+                        "unit": "4px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "label-sm": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #E2E4E9;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body class="bg-background min-h-screen text-on-surface">
+<!-- Mock Page Content (to show overlay effect) -->
+<div class="p-gutter max-w-container-max mx-auto">
+<h1 class="font-display-lg text-display-lg text-primary-container mb-md">Sayurin</h1>
+<p class="font-body-lg text-body-lg text-secondary">A premium, eco-conscious grocery experience.</p>
+</div>
+<!-- Backdrop Overlay -->
+<div aria-hidden="true" class="fixed inset-0 bg-primary-container/40 z-40 transition-opacity duration-300 backdrop-blur-sm"></div>
+<!-- Right Side Sheet (Cart Drawer) -->
+<div aria-labelledby="cart-title" aria-modal="true" class="fixed right-0 top-0 h-full w-full max-w-[420px] bg-surface-container-lowest border-l-2 border-primary-container shadow-2xl z-50 flex flex-col transform transition-transform duration-300 translate-x-0" role="dialog">
+<!-- Sticky Header -->
+<div class="flex items-center justify-between p-gutter border-b border-primary-container bg-surface-container-lowest z-10">
+<div>
+<h2 class="font-headline-md text-headline-md text-primary-container" id="cart-title">Keranjang Belanja</h2>
+<p class="font-label-sm text-label-sm text-secondary mt-xs">Kelola sayuran segar Anda</p>
+</div>
+<button aria-label="Close cart" class="p-2 text-primary-container hover:bg-surface-container-low rounded-full transition-colors flex items-center justify-center group">
+<span class="material-symbols-outlined text-2xl group-hover:scale-110 transition-transform">close</span>
+</button>
+</div>
+<!-- Scrollable Items List -->
+<div class="flex-1 overflow-y-auto p-gutter space-y-md bg-surface-bright">
+<!-- Cart Item 1 -->
+<div class="flex gap-md bg-surface-container-lowest p-md rounded-2xl border border-[#E2E4E9] group hover:border-primary-container transition-colors shadow-sm">
+<!-- Thumbnail -->
+<div class="w-24 h-24 rounded-xl overflow-hidden shrink-0 bg-surface-container-low flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="A macro shot of vibrant, freshly harvested organic spinach leaves, displaying deep green hues, crisp textures, and delicate water droplets. Soft, natural daylight highlights the organic quality and freshness. Minimalist, premium culinary photography style, set against a clean white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyHKUQIjPRHW2UtUu4YcYKaoWyWzLjbUPZvF9urew7GdKU_I2aWvt0FKtD_wO-0ns5HlGR7M83l5GptmFOqV3ZUMSiY0u0ew_l8iX2vLRhqLtTFE47ERh8ZVNEEb77LZAU-Qi1p_uEkPrYrMEeXOzysPXu1pFG-zE92FexqFvsKVyzz159reiM5kK-VvXIvUI6FO3JkTJj0GYLH8LizdHaaYYcZ1BobM4bbVt-ksfahJb_PUYoW6jVAg"/>
+</div>
+<!-- Details -->
+<div class="flex flex-col flex-1 justify-between">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-label-md text-label-md text-on-surface">Bayam Organik</h3>
+<p class="font-label-sm text-label-sm text-secondary mt-1">250g</p>
+</div>
+<button aria-label="Remove Bayam Organik" class="text-secondary hover:text-error transition-colors p-1">
+<span class="material-symbols-outlined text-xl">delete</span>
+</button>
+</div>
+<div class="flex justify-between items-center mt-2">
+<span class="font-label-md text-label-md text-primary-container">Rp 12.500</span>
+<!-- Stepper -->
+<div class="flex items-center border border-[#E2E4E9] rounded-lg bg-surface-container-lowest h-8">
+<button aria-label="Decrease quantity" class="w-8 h-full flex items-center justify-center text-secondary hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined text-sm">remove</span>
+</button>
+<span class="font-label-sm text-label-sm w-6 text-center text-on-surface">1</span>
+<button aria-label="Increase quantity" class="w-8 h-full flex items-center justify-center text-secondary hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Cart Item 2 -->
+<div class="flex gap-md bg-surface-container-lowest p-md rounded-2xl border border-[#E2E4E9] group hover:border-primary-container transition-colors shadow-sm relative overflow-hidden">
+<!-- Thumbnail -->
+<div class="w-24 h-24 rounded-xl overflow-hidden shrink-0 bg-surface-container-low flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="A close-up studio shot of bright yellow, plump sweet corn kernels still attached to a piece of cob. The lighting is soft and diffused, emphasizing the juicy, fresh texture of the corn. The aesthetic is clean, modern, and appetizing, reflecting premium organic produce." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4nxKJBZRd0WhBM5fVpRaPRRU41iQAqpxFAZTk43CfEK9ZxJHl4cdGuOn1S_4wu6DJc5kYp_LaMjb7xuOhoJ_HjkrniwDJiH9xY7HT97C4Nc-LFTYEz60ozEM8xn-BE_MEOsIrQfZDo9FYxE7VGI9Z-V7BfvYQu7ZY-fCOOXQs841Z5b7WyLBtKAR3q4LizMLtAI_hCs49a7Ikh184w2XCA4lSPj4vsMdKrqX0btCvol7dUuiE3NI_Cw"/>
+</div>
+<!-- Details -->
+<div class="flex flex-col flex-1 justify-between">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-label-md text-label-md text-on-surface">Jagung Manis</h3>
+<!-- Badge -->
+<div class="inline-flex items-center gap-1 bg-[#F4F5F7] px-2 py-1 rounded-full mt-1">
+<span class="material-symbols-outlined text-[10px] text-primary-container">menu_book</span>
+<span class="font-label-sm text-[10px] text-primary-container">Dari Resep</span>
+</div>
+</div>
+<button aria-label="Remove Jagung Manis" class="text-secondary hover:text-error transition-colors p-1">
+<span class="material-symbols-outlined text-xl">delete</span>
+</button>
+</div>
+<div class="flex justify-between items-center mt-2">
+<span class="font-label-md text-label-md text-primary-container">Rp 8.000</span>
+<!-- Stepper -->
+<div class="flex items-center border border-[#E2E4E9] rounded-lg bg-surface-container-lowest h-8">
+<button aria-label="Decrease quantity" class="w-8 h-full flex items-center justify-center text-secondary hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined text-sm">remove</span>
+</button>
+<span class="font-label-sm text-label-sm w-6 text-center text-on-surface">2</span>
+<button aria-label="Increase quantity" class="w-8 h-full flex items-center justify-center text-secondary hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Footer -->
+<div class="bg-surface-container-lowest border-t border-primary-container p-gutter flex flex-col gap-md z-10 shadow-[0px_-4px_20px_rgba(0,0,0,0.04)]">
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-secondary">Subtotal</span>
+<span class="font-headline-md text-headline-md text-primary-container">Rp 20.500</span>
+</div>
+<div class="flex items-center gap-2 bg-[#F4F5F7] p-2 rounded-lg justify-center">
+<span class="material-symbols-outlined text-primary-container text-sm">eco</span>
+<span class="font-label-sm text-label-sm text-primary-container">Hemat 1.2kg food waste</span>
+</div>
+<button class="w-full bg-primary-container text-[#F4F5F7] font-label-md text-label-md py-4 px-6 rounded-xl hover:bg-primary-fixed hover:text-primary-container transition-all duration-200 active:scale-[0.98] flex justify-center items-center gap-2 shadow-md hover:shadow-lg">
+                Checkout Sekarang
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</body></html>

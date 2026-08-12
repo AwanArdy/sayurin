@@ -1,0 +1,313 @@
+<!DOCTYPE html><html lang="id"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Sayur Online - Belanja Sayur Segar &amp; Resep Pilihan</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-container": "#8abda9",
+                        "secondary-fixed": "#e1e2e4",
+                        "inverse-on-surface": "#f0f1ee",
+                        "on-error-container": "#93000a",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#2e312f",
+                        "inverse-primary": "#9ed1bd",
+                        "tertiary-fixed-dim": "#fab6ac",
+                        "tertiary-fixed": "#ffdad5",
+                        "surface-variant": "#e2e3e0",
+                        "secondary-fixed-dim": "#c5c6c8",
+                        "on-secondary": "#ffffff",
+                        "secondary": "#5c5f60",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed": "#002117",
+                        "on-tertiary-fixed": "#34100b",
+                        "surface-container-highest": "#e2e3e0",
+                        "surface": "#f9faf7",
+                        "primary-container": "#1b4d3e",
+                        "outline": "#707974",
+                        "tertiary-container": "#673831",
+                        "on-tertiary-container": "#e4a399",
+                        "on-primary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed-variant": "#444749",
+                        "on-primary-fixed-variant": "#1d4f40",
+                        "on-tertiary-fixed-variant": "#693a33",
+                        "secondary-container": "#dee0e2",
+                        "surface-bright": "#f9faf7",
+                        "surface-container-high": "#e7e8e6",
+                        "surface-container": "#edeeeb",
+                        "primary-fixed": "#baeed9",
+                        "on-secondary-fixed": "#191c1e",
+                        "surface-dim": "#d9dad8",
+                        "surface-tint": "#376757",
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#9ed1bd",
+                        "on-surface": "#191c1b",
+                        "surface-container-low": "#f3f4f1",
+                        "on-secondary-container": "#606365",
+                        "outline-variant": "#c0c9c3",
+                        "background": "#f9faf7",
+                        "on-background": "#191c1b",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#4c221c",
+                        "primary": "#003629",
+                        "on-surface-variant": "#404945"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "container-margin": "24px",
+                        "gutter": "16px",
+                        "section-gap": "48px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "500" }],
+                        "headline-md": ["20px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #F4F5F7; /* Using specific hex for off-white base layer as per Style Guidance */
+            color: #191c1b;
+        }
+        .ambient-shadow {
+            box-shadow: 0px 10px 30px rgba(27, 77, 62, 0.05);
+        }
+        .ambient-shadow-hover:hover {
+            box-shadow: 0px 15px 40px rgba(27, 77, 62, 0.08);
+            transform: translateY(-4px);
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="font-body-lg text-body-lg antialiased">
+<!-- Top Navigation Bar -->
+<header class="bg-surface dark:bg-surface-container fixed top-0 w-full z-50 border-b-2 border-primary dark:border-primary-fixed shadow-sm">
+<div class="flex justify-between items-center px-container-margin py-4 max-w-7xl mx-auto">
+<!-- Brand Logo -->
+<div class="flex items-center gap-2">
+<img alt="Sayur Online Logo" class="h-10 w-10 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfWEc9eNkSsWsIcqdi3cOQ8GMOW3PXaz875cbdK8vrEhCWPMv-O5p1qqNGOleITOWnMtp7NsEeAZ9brksZSxp91O0c4lNsi1-Z--3Wi1y6pIEfFkMTJT9Bp73J-vJihJbRU475th0uWXGBO_TR4Qd5qFYtSbK8_p84-fiapUKCKUcf1S4wv8XFt1Kf5e9ZDON_lSpTW232YeYMbldnViHNcrgHqN7BGMivMmF8mTrnbVfBQ3V_WEr_nA">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary hidden sm:block">Sayurin</span>
+</div>
+<!-- Search Bar (Centered) -->
+<div class="hidden md:flex flex-1 max-w-md mx-8">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-lowest border border-primary/10 focus:border-primary focus:border-2 rounded-full py-2 pl-10 pr-4 text-body-sm outline-none transition-colors placeholder:text-on-surface-variant" placeholder="Cari sayuran atau resep..." type="text">
+</div>
+</div>
+<!-- Navigation Links & Actions -->
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex gap-6">
+<!-- Active Link -->
+<a class="text-primary dark:text-inverse-primary font-bold border-b-2 border-primary py-1 font-label-caps text-label-caps hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all" href="#">Beranda</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors py-1 font-label-caps text-label-caps hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all" href="#">Resep</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors py-1 font-label-caps text-label-caps hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all" href="#">Produk</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors py-1 font-label-caps text-label-caps hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all" href="#">Dashboard</a>
+</nav>
+<!-- Trailing Action (Cart) -->
+<button class="relative p-2 text-primary hover:bg-surface-container-low rounded-full transition-all">
+<span class="material-symbols-outlined" data-icon="shopping_cart" data-weight="fill" style="font-variation-settings: 'FILL' 1;">shopping_cart</span>
+<span class="absolute top-1 right-1 h-3 w-3 bg-primary-container rounded-full border-2 border-surface"></span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="pt-24 pb-section-gap px-container-margin max-w-7xl mx-auto space-y-section-gap">
+<!-- Hero Banner -->
+<section class="relative w-full rounded-xl overflow-hidden bg-surface-container-low p-8 md:p-16 flex flex-col justify-center items-start min-h-[400px]">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-60" data-alt="A bright, fresh, high-quality photograph of assorted organic vegetables, leafy greens, and cooking ingredients elegantly arranged on a clean white marble countertop. The lighting is soft, natural, and high-key, creating a pristine light-mode aesthetic. Deep vibrant greens dominate, conveying health and freshness, with soft off-white background spaces allowing for text overlay. The overall mood is modern, organic, and highly appetizing." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA88h3MyzoD1qI_2zbm0YSuI2EDXHI_hR4jK4VMdG1O9dHT4LhXNtnSH8XP-h46xliyfqIukRbSAuozxs8ZjS1X3czH5AlIkJrYTNVyyQbgyg02zaxNP6QtMJjvWeL_7iim4UKkFiCoGYkutXgrLTcx53Zkthe_zUnhsXnRkmqEwcAtCHeUPrtCJX6HvQFjkucdSiDcdNYJEfHvD4Ert-pF_-Qomc3lkm63yv60pH_dDkikUw7DJObBVA">
+</div>
+<div class="relative z-10 max-w-2xl bg-surface-container-lowest/80 backdrop-blur-md p-8 rounded-lg ambient-shadow">
+<h1 class="font-headline-lg text-headline-lg text-primary mb-4">Masak Lebih Sehat dengan Resep Pilihan</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8">Belanja bahan masakan segar langsung dari resep favorit Anda.</p>
+<button class="bg-primary-container text-on-primary hover:bg-primary px-8 py-3 rounded-full font-label-caps text-label-caps transition-colors inline-flex items-center gap-2">
+                    Mulai Belanja
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- Section 1: Nutrition Filter Bar -->
+<section>
+<div class="flex flex-wrap gap-4 items-center justify-center">
+<button class="px-6 py-2 rounded-full border-2 border-primary-container bg-primary-container text-on-primary font-label-caps text-label-caps transition-colors">
+                    Tinggi Fiber
+                </button>
+<button class="px-6 py-2 rounded-full border-2 border-primary-container bg-surface-container-lowest text-primary-container hover:bg-primary-container/5 font-label-caps text-label-caps transition-colors">
+                    Tinggi Zat Besi
+                </button>
+<button class="px-6 py-2 rounded-full border-2 border-primary-container bg-surface-container-lowest text-primary-container hover:bg-primary-container/5 font-label-caps text-label-caps transition-colors">
+                    Rendah Kalori
+                </button>
+<button class="px-6 py-2 rounded-full border-2 border-primary-container bg-surface-container-lowest text-primary-container hover:bg-primary-container/5 font-label-caps text-label-caps transition-colors">
+                    Aman Asam Urat
+                </button>
+</div>
+</section>
+<!-- Section 2: Recipe Grid -->
+<section>
+<div class="flex justify-between items-end mb-8">
+<h2 class="font-headline-md text-headline-md text-primary">Resep Masakan Hari Ini</h2>
+<a class="text-primary-container hover:underline font-label-caps text-label-caps" href="#">Lihat Semua</a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter md:gap-container-margin">
+<!-- Recipe Card 1 -->
+<article class="bg-surface-container-lowest rounded-[24px] ambient-shadow ambient-shadow-hover overflow-hidden flex flex-col h-full border border-primary/5 cursor-pointer">
+<div class="relative h-48 w-full bg-surface-container-low">
+<img class="w-full h-full object-cover" data-alt="A beautifully styled bowl of Sayur Asem (Indonesian tamarind vegetable soup) served in a modern ceramic bowl on a clean light wooden table. The soup contains fresh corn, chayote, and long beans. Bright natural lighting highlights the vibrant colors of the vegetables and the clear, slightly reddish broth. Minimalist setting, light mode aesthetic, healthy organic vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrPyIdyLO43dWlVheXB5l_oXXmnh7EUXLactC6J88vlCcDtYv4xKdTRhz8t8FGfyBQA_nsUEqyq9xbjHbtfZfuDuAkFI89n8s4fAT1TWNX7R7rFHXvM8b5NbylcFpzald8H-4DkFmV2faqZRBymskwA4lP59Q4DXulbxBL9_FK5f_ejh8z4whJ1Mol2lsMSE_Y4ideas-PDy6Wzb6VIp_iY27GhvujW1LhxE4UIpKamFzWk8UKZ3ra5A">
+</div>
+<div class="p-6 flex flex-col flex-1">
+<h3 class="font-body-lg text-body-lg font-bold text-on-surface mb-2">Sayur Asem Segar</h3>
+<div class="flex items-center gap-4 text-on-surface-variant font-body-sm text-body-sm mt-auto pt-4">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> 20 min</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">restaurant</span> Mudah</span>
+</div>
+</div>
+</article>
+<!-- Recipe Card 2 -->
+<article class="bg-surface-container-lowest rounded-[24px] ambient-shadow ambient-shadow-hover overflow-hidden flex flex-col h-full border border-primary/5 cursor-pointer">
+<div class="relative h-48 w-full bg-surface-container-low">
+<img class="w-full h-full object-cover" data-alt="A top-down view of a fresh, vibrant green spinach salad (Pecel Bayam) mixed with sprouts and a drizzle of rich brown peanut sauce, served on a crisp white plate. The lighting is bright and even, casting soft shadows. The overall aesthetic is clean, modern, and appetizing, emphasizing fresh, healthy, high-fiber eating in a light minimalist environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5SbR--QxcTfZilg6wgqzjxDtnRABiy_meaAs-lSHxs88P8kOfp1NazGDPfehXGwpOmZBzaMaCLYjGhXhVY87BIUTQ14UawbJLi8oa7vhJ10BDChM4WMdK9WXRz5ecoEA78IL2zmfmLM4_e_xzD4L_XYAX_AwArrdceKx3Yq0Kv5uDOJEzVCPe4vom5SHl-UCFQlpqFpPD6X5LD4f9tbNI_e8xtIw3b0iadg34KDcnqNl_PvRReaFuPA">
+</div>
+<div class="p-6 flex flex-col flex-1">
+<h3 class="font-body-lg text-body-lg font-bold text-on-surface mb-2">Pecel Bayam Madiun</h3>
+<div class="flex items-center gap-4 text-on-surface-variant font-body-sm text-body-sm mt-auto pt-4">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> 15 min</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">restaurant</span> Mudah</span>
+</div>
+</div>
+</article>
+<!-- Recipe Card 3 -->
+<article class="bg-surface-container-lowest rounded-[24px] ambient-shadow ambient-shadow-hover overflow-hidden flex flex-col h-full border border-primary/5 cursor-pointer">
+<div class="relative h-48 w-full bg-surface-container-low">
+<img class="w-full h-full object-cover" data-alt="A sleek, modern pan holding stir-fried broccoli and garlic (Tumis Brokoli Bawang Putih). The broccoli florets are vibrant, glossy green, lightly glistening with olive oil. Placed on a pristine white marble counter with a few scattered fresh garlic cloves. High-key lighting, clean minimalist composition, emphasizing nutritious, low-calorie cooking in an upscale modern kitchen setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNUCjXvPWL3NHfCqlayRsrMFF87ZEhwq8m7vMTWpYA4YF5AT55cRJBFMZMh8za3Fn1iYvW3aw_ipps7QWdfZ5QXYPmLBIWI4P_f1xTa4D24Oyd6_ZO7pZwSqEUrOzZHU-4RX1EKg6zCEXmaN3DGs0NfZfVInjV5bxeK-VbwIMe1DG_fp2Icpso_qZNr4R8vz_3j8DUQD7PFLiTj5hZFJQ2MQQy-_fVICR1czqVzNwjC_FyW8kOm4YqBg">
+</div>
+<div class="p-6 flex flex-col flex-1">
+<h3 class="font-body-lg text-body-lg font-bold text-on-surface mb-2">Tumis Brokoli Bawang Putih</h3>
+<div class="flex items-center gap-4 text-on-surface-variant font-body-sm text-body-sm mt-auto pt-4">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> 10 min</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">restaurant</span> Sangat Mudah</span>
+</div>
+</div>
+</article>
+<!-- Recipe Card 4 -->
+<article class="bg-surface-container-lowest rounded-[24px] ambient-shadow ambient-shadow-hover overflow-hidden flex flex-col h-full border border-primary/5 cursor-pointer">
+<div class="relative h-48 w-full bg-surface-container-low">
+<img class="w-full h-full object-cover" data-alt="A comforting bowl of clear vegetable soup (Sayur Sop) featuring neatly diced bright orange carrots, pale cabbage, and deep green celery leaves in a transparent broth. Served in a minimalist white bowl on a light gray placemat. Bright, diffused daylight highlights the freshness of the ingredients. The image communicates a healthy, home-cooked, organic aesthetic suitable for a modern diet." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRRqgMKlWnFlMWdJ5lw3GejpHdT8dsZURHM_3_p6mK078jvBUX5uLrGfd3UApPyxm9U57aIAniYG03o5X4ArnZhaWYd2D9OPYwzLj71tyEKv8drZOue4CiT3Mu5wf0YZNDf7RoaS_jqF7rtXqKYbqYmMm7J0LKezsxboOrQuOeKW2YS43NNRWn9kCcwlo8XonIcHYvE_XD_xULhmdAnYZReuD3PD8-OiCtzzPcnqVCFDj2oASDPo1SqQ">
+</div>
+<div class="p-6 flex flex-col flex-1">
+<h3 class="font-body-lg text-body-lg font-bold text-on-surface mb-2">Sayur Sop Bening</h3>
+<div class="flex items-center gap-4 text-on-surface-variant font-body-sm text-body-sm mt-auto pt-4">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> 25 min</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">restaurant</span> Sedang</span>
+</div>
+</div>
+</article>
+</div>
+</section>
+<!-- Section 3: Fresh Produce Grid -->
+<section>
+<div class="flex justify-between items-end mb-8">
+<h2 class="font-headline-md text-headline-md text-primary">Sayur Segar Pilihan</h2>
+<a class="text-primary-container hover:underline font-label-caps text-label-caps" href="#">Lihat Semua</a>
+</div>
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-gutter md:gap-container-margin">
+<!-- Product Card 1 -->
+<article class="bg-surface-container-lowest rounded-[24px] p-4 ambient-shadow ambient-shadow-hover flex flex-col items-center text-center">
+<div class="w-32 h-32 rounded-full bg-surface-container-low mb-4 overflow-hidden flex items-center justify-center p-2">
+<img class="w-full h-full object-contain" data-alt="A crisp, high-resolution studio shot of fresh organic spinach leaves (Bayam) loosely bundled together. The leaves are a vibrant, deep primary green, perfectly unblemished, isolated against a pure white or very light off-white background. Soft, diffused lighting enhances the texture and freshness, embodying a premium, clean grocery aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVpFXCvOsez5QoppSJPDR3ObGeuP6GhcKcCtIvwOpqWA0nQCesnjrPLbgtIUHyZTvIT1Lkp70h-IMO5JfSaEj0BCgiSiC55JfncDCd9Cwl7g1y2_kOrj-6QJK9eDfxQv-fizLEjV2Dx0uk-Dw2Fi40wv5qvs9-uSWxJPjUYMHXXZNE34yodtsvUfTlJJ3l9ySxisgOqKC3OHF-PoqoBtTiLGyOCqq5bbiXi8ALZcKAw7-UdjILHrSHPA">
+</div>
+<h3 class="font-body-lg text-body-lg font-bold text-on-surface mb-1">Bayam Organik</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">250g</p>
+<p class="font-headline-md text-headline-md font-bold text-primary mb-4">Rp 5.000</p>
+<button class="w-full py-2 rounded-full border-2 border-primary-container text-primary-container hover:bg-primary-container hover:text-on-primary font-label-caps text-label-caps transition-colors">
+                        Beli Cepat
+                    </button>
+</article>
+<!-- Product Card 2 -->
+<article class="bg-surface-container-lowest rounded-[24px] p-4 ambient-shadow ambient-shadow-hover flex flex-col items-center text-center">
+<div class="w-32 h-32 rounded-full bg-surface-container-low mb-4 overflow-hidden flex items-center justify-center p-2">
+<img class="w-full h-full object-contain" data-alt="A crisp, high-resolution studio shot of fresh, vibrant orange carrots with their green tops still attached. Cleaned and arranged neatly against a pure white background. The lighting is soft and even, highlighting the bright color and crisp texture of the root vegetables. Represents high-quality, organic farm-fresh produce in a modern light-mode design context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzo3oX_uJarKtXy2kuqTsy5zikEKS1tfqg7m6h_N7UzzVxsNh4zs1tfOuC7PALy5_jUVIvwOqMH-Rce78VDhn1mk-rqS4gpAfHjoL150XE59Uyyq6KSAyv2P5N0EuulfBAvHcxIJZAp8jTqRZVPpyyoqKLZl9sLt8bRGA-7bcATjXG-KnEaJnaht1sIbK-6nBJ1xRRb_6rqlGqc_2yCSbRAFc42i-X3dL5HsN0bc6tZkd45m3rM2jvCA">
+</div>
+<h3 class="font-body-lg text-body-lg font-bold text-on-surface mb-1">Wortel Berastagi</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">500g</p>
+<p class="font-headline-md text-headline-md font-bold text-primary mb-4">Rp 12.000</p>
+<button class="w-full py-2 rounded-full border-2 border-primary-container text-primary-container hover:bg-primary-container hover:text-on-primary font-label-caps text-label-caps transition-colors">
+                        Beli Cepat
+                    </button>
+</article>
+<!-- Product Card 3 -->
+<article class="bg-surface-container-lowest rounded-[24px] p-4 ambient-shadow ambient-shadow-hover flex flex-col items-center text-center">
+<div class="w-32 h-32 rounded-full bg-surface-container-low mb-4 overflow-hidden flex items-center justify-center p-2">
+<img class="w-full h-full object-contain" data-alt="A perfect, tightly packed head of fresh green broccoli, isolated on a clean off-white background. The florets are a deep, rich green (#1B4D3E equivalent), looking crisp and moist. High-key studio lighting creates a premium, pristine look, aligning with a clean, minimalist organic grocery brand visual identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXemmSX9XKPxMpuHFa3nwP4Z7OkcsBDW8yNhAOcE61A-mk-XZzzKrNsrI53zHvl6V0cZzfSomnE1maeBFQkkAhSA0RbFgNIgXZEKV-MyVWLZywozaoPDZdWrFPbFGyKNjhhAkHEEX4U4J3xg6rwkg8ltN87IE-fPyghKl3AT5L9zDFIU6kPnHqkFbfjZy_uAONikqW7lAMmF1X8ewPTMzZ2hz2yEfFZv4_gLbPL9j3kOsftQu8warO8w">
+</div>
+<h3 class="font-body-lg text-body-lg font-bold text-on-surface mb-1">Brokoli Hijau</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">300g</p>
+<p class="font-headline-md text-headline-md font-bold text-primary mb-4">Rp 15.000</p>
+<button class="w-full py-2 rounded-full border-2 border-primary-container text-primary-container hover:bg-primary-container hover:text-on-primary font-label-caps text-label-caps transition-colors">
+                        Beli Cepat
+                    </button>
+</article>
+<!-- Product Card 4 -->
+<article class="bg-surface-container-lowest rounded-[24px] p-4 ambient-shadow ambient-shadow-hover flex flex-col items-center text-center">
+<div class="w-32 h-32 rounded-full bg-surface-container-low mb-4 overflow-hidden flex items-center justify-center p-2">
+<img class="w-full h-full object-contain" data-alt="A cluster of bright red, perfectly ripe tomatoes still on the vine. The skin is glossy and taut, exuding freshness. Photographed against a minimalist pure white background under bright, soft studio lights. The vivid red provides a striking, appetizing contrast to a green-and-white minimalist design system, emphasizing premium quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAejCb2kp3VZXm7r4P-xxxfVB1xytXxUy2SSx86oMR-uWRmij_uzhb6pBQpno-kTfWif6uIMSjYlwgtU5hmDGU4di8xFn5JHgdlZ20CSnEawe2kWuPtYjxkPHbNh0n-sYdPkm0wetImegHIegOz9YOzmSR1VkQCJh1CNxFrrUChTjiPjUM614WVDUWxjXJD7zKLxuzk0WWHOgY6CLSBjCDhXTbCE6CgcD5XNLQ2MEcLXnqjD4RC5500Ug">
+</div>
+<h3 class="font-body-lg text-body-lg font-bold text-on-surface mb-1">Tomat Cherry</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">250g</p>
+<p class="font-headline-md text-headline-md font-bold text-primary mb-4">Rp 18.000</p>
+<button class="w-full py-2 rounded-full border-2 border-primary-container text-primary-container hover:bg-primary-container hover:text-on-primary font-label-caps text-label-caps transition-colors">
+                        Beli Cepat
+                    </button>
+</article>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low dark:bg-surface-container-highest w-full py-section-gap mt-section-gap">
+<div class="flex flex-col md:flex-row justify-between items-center px-container-margin max-w-7xl mx-auto gap-8">
+<div class="flex items-center gap-2">
+<img alt="Sayur Online Logo" class="h-8 w-8 object-contain grayscale opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfWEc9eNkSsWsIcqdi3cOQ8GMOW3PXaz875cbdK8vrEhCWPMv-O5p1qqNGOleITOWnMtp7NsEeAZ9brksZSxp91O0c4lNsi1-Z--3Wi1y6pIEfFkMTJT9Bp73J-vJihJbRU475th0uWXGBO_TR4Qd5qFYtSbK8_p84-fiapUKCKUcf1S4wv8XFt1Kf5e9ZDON_lSpTW232YeYMbldnViHNcrgHqN7BGMivMmF8mTrnbVfBQ3V_WEr_nA">
+<span class="font-headline-md text-headline-md font-bold text-primary opacity-80">Sayurin</span>
+</div>
+<nav class="flex flex-wrap justify-center gap-6">
+<a class="text-on-surface-variant hover:text-primary hover:underline decoration-primary font-label-caps text-label-caps transition-opacity" href="#">Tentang Kami</a>
+<a class="text-on-surface-variant hover:text-primary hover:underline decoration-primary font-label-caps text-label-caps transition-opacity" href="#">Kebijakan Privasi</a>
+<a class="text-on-surface-variant hover:text-primary hover:underline decoration-primary font-label-caps text-label-caps transition-opacity" href="#">Syarat &amp; Ketentuan</a>
+<a class="text-on-surface-variant hover:text-primary hover:underline decoration-primary font-label-caps text-label-caps transition-opacity" href="#">Hubungi Kami</a>
+</nav>
+<p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 Sayurin. Kesegaran dari Kebun ke Dapur.</p>
+</div>
+</footer>
+
+
+</body></html>

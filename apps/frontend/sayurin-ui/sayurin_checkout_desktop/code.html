@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sayurin - Checkout</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "inverse-on-surface": "#ebf2f4",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed": "#191c1e",
+                        "on-surface": "#161d1f",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#e1e2e4",
+                        "on-tertiary-container": "#b1b2b2",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#dde4e6",
+                        "on-secondary-container": "#606365",
+                        "background": "#f4fafd",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#e8eff1",
+                        "primary-container": "#1b4d3e",
+                        "on-primary-fixed": "#002117",
+                        "on-surface-variant": "#404945",
+                        "tertiary-container": "#434545",
+                        "on-background": "#161d1f",
+                        "surface-container-low": "#eef5f7",
+                        "secondary-fixed-dim": "#c5c6c8",
+                        "surface-variant": "#dde4e6",
+                        "surface-container-high": "#e2e9ec",
+                        "on-primary-container": "#8abda9",
+                        "primary-fixed": "#baeed9",
+                        "secondary-container": "#dee0e2",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#5c5f60",
+                        "surface-dim": "#d4dbdd",
+                        "on-primary-fixed-variant": "#1d4f40",
+                        "outline": "#707974",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "primary-fixed-dim": "#9ed1bd",
+                        "surface": "#f4fafd",
+                        "inverse-primary": "#9ed1bd",
+                        "surface-bright": "#f4fafd",
+                        "on-secondary-fixed-variant": "#444749",
+                        "inverse-surface": "#2b3234",
+                        "outline-variant": "#c0c9c3",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#e2e2e2",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "primary": "#003629",
+                        "tertiary": "#2d2f2f",
+                        "surface-tint": "#376757"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px",
+                        "2xl": "1.5rem"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "container-max": "1200px",
+                        "xs": "4px",
+                        "xl": "40px",
+                        "gutter": "24px",
+                        "unit": "4px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "label-sm": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "label-md": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .custom-radio:checked + div {
+            background-color: #F4F5F7;
+            border-color: #1B4D3E;
+            border-width: 2px;
+            padding: 19px;
+        }
+        .custom-radio:checked + div .radio-inner {
+            background-color: #1B4D3E;
+        }
+        .custom-radio:focus-visible + div {
+            outline: 2px solid #1B4D3E;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body class="bg-[#F4F5F7] text-on-surface font-body-md antialiased min-h-screen">
+<!-- TopNavBar (Simplified for Checkout) -->
+<header class="bg-surface-container-lowest border-b border-surface-variant sticky top-0 z-50">
+<div class="flex justify-between items-center px-lg py-md max-w-container-max mx-auto w-full">
+<div class="flex items-center gap-sm">
+<img alt="Sayurin Logo" class="w-10 h-10 object-contain rounded-full" src="https://lh3.googleusercontent.com/aida/AP1WRLtGhXcDphYCwoS6xof6wPej8KBF_MR7Qgccyi22BRx8Y-0dhqtsnZltAvjhcsI4gtUfFj1aBajp1KOQ5ZAP0T3KrC_tclNzF0pB74GvmlNQvCrx_hxLjweFHe0DuyNFNUwB1DohxKbrHqBXGsDC19ECOfC9MD1PvpsqauQAhiu6g0GEMu5SjrcO1vRaxNUOwSymixeiBQn9eQMJb1SAlISZlwXX-7hP1HrKcMc2C7JydBl9YHsgbsErZgrG"/>
+<span class="text-headline-md font-headline-md font-bold text-primary">Checkout</span>
+</div>
+<div class="flex items-center gap-xs text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">lock</span>
+<span class="text-label-md font-label-md">Secure</span>
+</div>
+</div>
+</header>
+<!-- Main Content Grid -->
+<main class="max-w-container-max mx-auto px-lg py-xl">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Left Column: Shipping & Payment -->
+<div class="md:col-span-4 flex flex-col gap-md">
+<!-- Alamat Pengiriman Card -->
+<section class="bg-surface-container-lowest rounded-2xl p-lg shadow-sm border border-surface-variant flex flex-col gap-sm">
+<div class="flex justify-between items-center mb-sm">
+<h2 class="text-headline-md font-headline-md text-on-surface">Alamat Pengiriman</h2>
+<button class="text-primary-container text-label-md font-label-md hover:underline bg-transparent border-none p-0 cursor-pointer">Ubah</button>
+</div>
+<div class="flex flex-col gap-xs text-body-md font-body-md text-on-surface-variant">
+<span class="font-bold text-on-surface">Budi Santoso</span>
+<span>Jl. Sudirman No. 45, Kebayoran Baru</span>
+<span>Jakarta Selatan, DKI Jakarta 12190</span>
+<span>0812-3456-7890</span>
+</div>
+</section>
+<!-- Metode Pembayaran Card -->
+<section class="bg-surface-container-lowest rounded-2xl p-lg shadow-sm border border-surface-variant flex flex-col gap-sm">
+<div class="flex justify-between items-center mb-sm">
+<h2 class="text-headline-md font-headline-md text-on-surface">Metode Pembayaran</h2>
+<button class="text-primary-container text-label-md font-label-md hover:underline bg-transparent border-none p-0 cursor-pointer">Ubah</button>
+</div>
+<div class="flex items-center gap-sm text-body-md font-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-primary-container">account_balance_wallet</span>
+<span>GoPay - Saldo: Rp 500.000</span>
+</div>
+</section>
+</div>
+<!-- Center Column: Substitution Policy -->
+<div class="md:col-span-4 flex flex-col gap-md">
+<section class="bg-surface-container-lowest rounded-2xl p-lg shadow-sm border border-surface-variant flex flex-col gap-md">
+<h2 class="text-headline-md font-headline-md text-on-surface mb-xs">Kebijakan Substitusi Otomatis</h2>
+<p class="text-body-md font-body-md text-on-surface-variant mb-sm">Pilih apa yang terjadi jika barang yang Anda pesan kosong.</p>
+<fieldset class="flex flex-col gap-sm">
+<legend class="sr-only">Opsi Substitusi</legend>
+<!-- Option 1: Auto-substitute (Selected) -->
+<label class="relative cursor-pointer group">
+<input checked="" class="custom-radio sr-only" name="substitution" type="radio" value="auto"/>
+<div class="border border-surface-variant rounded-2xl p-5 transition-all flex items-start gap-md">
+<div class="mt-1 w-5 h-5 rounded-full border-2 border-primary-container flex items-center justify-center shrink-0">
+<div class="radio-inner w-2.5 h-2.5 rounded-full transition-colors bg-transparent"></div>
+</div>
+<div class="flex flex-col">
+<span class="text-body-lg font-body-lg font-semibold text-on-surface">Otomatis Ganti</span>
+<span class="text-body-md font-body-md text-on-surface-variant">Kami akan mengganti dengan barang serupa berkualitas.</span>
+</div>
+</div>
+</label>
+<!-- Option 2: WhatsApp Confirm -->
+<label class="relative cursor-pointer group">
+<input class="custom-radio sr-only" name="substitution" type="radio" value="whatsapp"/>
+<div class="border border-surface-variant rounded-2xl p-5 transition-all flex items-start gap-md hover:bg-surface-container-low">
+<div class="mt-1 w-5 h-5 rounded-full border-2 border-outline flex items-center justify-center shrink-0">
+<div class="radio-inner w-2.5 h-2.5 rounded-full transition-colors bg-transparent"></div>
+</div>
+<div class="flex flex-col">
+<span class="text-body-lg font-body-lg font-semibold text-on-surface">Konfirmasi via WA</span>
+<span class="text-body-md font-body-md text-on-surface-variant">Tim kami akan menghubungi Anda untuk konfirmasi.</span>
+</div>
+</div>
+</label>
+<!-- Option 3: Refund -->
+<label class="relative cursor-pointer group">
+<input class="custom-radio sr-only" name="substitution" type="radio" value="refund"/>
+<div class="border border-surface-variant rounded-2xl p-5 transition-all flex items-start gap-md hover:bg-surface-container-low">
+<div class="mt-1 w-5 h-5 rounded-full border-2 border-outline flex items-center justify-center shrink-0">
+<div class="radio-inner w-2.5 h-2.5 rounded-full transition-colors bg-transparent"></div>
+</div>
+<div class="flex flex-col">
+<span class="text-body-lg font-body-lg font-semibold text-on-surface">Refund Otomatis</span>
+<span class="text-body-md font-body-md text-on-surface-variant">Dana akan dikembalikan untuk barang yang kosong.</span>
+</div>
+</div>
+</label>
+</fieldset>
+<button class="text-primary-container text-label-md font-label-md hover:underline self-start mt-xs bg-transparent border-none p-0 cursor-pointer">Pelajari Lebih Lanjut</button>
+</section>
+</div>
+<!-- Right Column: Order Summary -->
+<div class="md:col-span-4">
+<section class="bg-surface-container-lowest rounded-2xl p-lg shadow-sm border border-surface-variant sticky top-[100px] flex flex-col gap-md">
+<h2 class="text-headline-md font-headline-md text-on-surface border-b border-surface-variant pb-sm">Ringkasan Pesanan</h2>
+<!-- Item List -->
+<div class="flex flex-col gap-sm max-h-[300px] overflow-y-auto pr-xs">
+<!-- Item 1 -->
+<div class="flex items-center gap-sm">
+<img class="w-16 h-16 object-cover rounded-lg bg-surface-container-low" data-alt="A small square thumbnail of fresh green spinach leaves neatly bundled together. The lighting is bright and crisp, highlighting the vibrant green color and natural textures against a clean white background. Modern, organic, fresh grocery aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDU2aBzJhqS_eIFJcZHnf8-Old1R16RM7UuZhx3s6KLFqmWD5THgT2q-pDQAKkqcCN-OA5m-_3EtQ_AEtRP5BZqP_oGZwWhsArlCu5sR_vffgklLAWqGW1zz2feogOSexKI1h9NQdK-MdqzTZQljb1oxaor34NXoc5EzLwFU4rMrXraAEtVXN12NaeAGq1awNfsroTjlWKbWcpQ3UCuV6dfZBwS2A1wncdSWY_fka276BoVxweschBRfw"/>
+<div class="flex-1 flex flex-col">
+<span class="text-body-md font-body-md font-semibold text-on-surface">Bayam Segar Premium</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">2 x Rp 15.000</span>
+</div>
+<span class="text-body-md font-body-md font-semibold text-on-surface">Rp 30.000</span>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center gap-sm">
+<img class="w-16 h-16 object-cover rounded-lg bg-surface-container-low" data-alt="A small square thumbnail of ripe red tomatoes on the vine. The lighting is bright and natural, emphasizing the glossy skin and deep red hue of the tomatoes against a clean minimalist white background. Premium organic grocery style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCg0Y_ZIIDK_d_ECx5n_YegsEvgTqGdn8KRv8VSRSd3fGcwWPHBba55ncuflwFsmANGyqEDY9eoZ297XLWmW3ZOF2jKxg3vZLCfZ4wFYy6vpcO2uLWrKK3ivOo92yWm-djMdQvrXRAdwG3SFcce8MBiZnVJdyruGjrdPd-F9Xk9Hva7JThQ0NpJkgb7SuS7nOrVAjRLj30POS2D_n5lWDcM-LdQPlMnEM05FkGPsWtE0H22q5MtibFRYw"/>
+<div class="flex-1 flex flex-col">
+<span class="text-body-md font-body-md font-semibold text-on-surface">Tomat Cherry Organik</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">1 x Rp 25.000</span>
+</div>
+<span class="text-body-md font-body-md font-semibold text-on-surface">Rp 25.000</span>
+</div>
+</div>
+<div class="border-t border-surface-variant my-xs"></div>
+<!-- Totals -->
+<div class="flex flex-col gap-xs text-body-md font-body-md">
+<div class="flex justify-between text-on-surface-variant">
+<span>Subtotal</span>
+<span>Rp 55.000</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span>Ongkos Kirim</span>
+<span>Rp 15.000</span>
+</div>
+<div class="flex justify-between text-headline-md font-headline-md font-bold text-on-surface mt-sm">
+<span>Total</span>
+<span>Rp 70.000</span>
+</div>
+</div>
+<!-- Pay Button -->
+<button class="w-full bg-primary-container text-on-primary hover:bg-primary-container/90 transition-colors py-md rounded-xl text-body-lg font-body-lg font-semibold mt-sm shadow-sm hover:shadow-md active:shadow-sm">
+                        Bayar &amp; Buat Pesanan
+                    </button>
+</section>
+</div>
+</div>
+</main>
+<!-- Footer (Simplified) -->
+<footer class="bg-surface-container-low mt-xl border-t border-surface-variant py-lg">
+<div class="max-w-container-max mx-auto px-lg flex flex-col md:flex-row justify-between items-center gap-md text-label-sm font-label-sm text-on-surface-variant">
+<span>© 2024 Sayurin Botanical. All rights reserved.</span>
+<div class="flex gap-md">
+<a class="hover:text-primary-container transition-colors" href="#">Syarat &amp; Ketentuan</a>
+<a class="hover:text-primary-container transition-colors" href="#">Kebijakan Privasi</a>
+</div>
+</div>
+</footer>
+</body></html>

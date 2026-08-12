@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nutrition Detail Modal - Sayurin</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config injected from system prompt -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#eef5f7",
+                        "tertiary-fixed": "#e2e2e2",
+                        "on-error": "#ffffff",
+                        "tertiary": "#2d2f2f",
+                        "surface-container-highest": "#dde4e6",
+                        "secondary": "#5c5f60",
+                        "primary": "#003629",
+                        "on-tertiary-container": "#b1b2b2",
+                        "surface-bright": "#f4fafd",
+                        "surface": "#f4fafd",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "surface-container": "#e8eff1",
+                        "inverse-primary": "#9ed1bd",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#1d4f40",
+                        "surface-dim": "#d4dbdd",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "primary-fixed-dim": "#9ed1bd",
+                        "inverse-surface": "#2b3234",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#c0c9c3",
+                        "surface-variant": "#dde4e6",
+                        "primary-container": "#1b4d3e",
+                        "inverse-on-surface": "#ebf2f4",
+                        "background": "#f4fafd",
+                        "on-secondary-fixed-variant": "#444749",
+                        "on-primary-fixed": "#002117",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#8abda9",
+                        "on-surface": "#161d1f",
+                        "secondary-fixed": "#e1e2e4",
+                        "surface-tint": "#376757",
+                        "on-secondary-fixed": "#191c1e",
+                        "secondary-container": "#dee0e2",
+                        "secondary-fixed-dim": "#c5c6c8",
+                        "tertiary-container": "#434545",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#404945",
+                        "outline": "#707974",
+                        "on-background": "#161d1f",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#e2e9ec",
+                        "on-secondary-container": "#606365",
+                        "primary-fixed": "#baeed9"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "unit": "4px",
+                        "margin-mobile": "16px",
+                        "container-max": "1200px",
+                        "gutter": "24px",
+                        "xl": "40px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Plus Jakarta Sans"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface font-sans text-on-surface antialiased">
+<!-- Modal Backdrop Overlay -->
+<!-- Opacity set to roughly 40% of Deep Leaf Green (#1B4D3E) via primary-container -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-margin-mobile bg-primary-container/40">
+<!-- Modal Card -->
+<div aria-labelledby="modal-title" aria-modal="true" class="bg-surface-container-lowest w-full max-w-md rounded-2xl shadow-[0px_12px_40px_rgba(0,0,0,0.08)] flex flex-col max-h-[85vh] overflow-hidden" role="dialog">
+<!-- Sticky Header -->
+<div class="sticky top-0 z-10 bg-surface-container-lowest border-b border-surface-container-highest px-md py-md flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<!-- Spinach Thumbnail Placeholder -->
+<div class="w-10 h-10 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container">
+<img alt="Bayam Segar" class="w-full h-full object-cover" data-alt="A close-up, high-quality photograph of fresh, vibrant green spinach leaves arranged neatly in a small square frame. The lighting is soft and natural, emphasizing the organic texture and rich green color of the leaves, set against a pristine white background. The image evokes freshness and health, aligning with a premium organic grocery aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtKc65_7OquZSHIkMxgi1Uiy5NeTCFP_1Mq9-7v_YuCK7TSgBLU9WC41SaxmsBu5D-A6Hw0mevWtkPcG_-BXZgz87776cvP6FD5vgQ_fheONcd9iH3ib_VxPl0I-AXmg6IXj1BT0XTyQIP5h8xxLfrMMM3mmMH4dGAICxSP-ERd3Dx67dkLZCLsBeu-K9fWWLOhOPr_N3vlBEBzxbI_MQx5TLzjmtffNDrYxY9il9XfXZXsDC2CJ1tOA"/>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-primary m-0" id="modal-title">Info Gizi</h2>
+<p class="font-label-md text-label-md text-secondary m-0">Bayam Segar</p>
+</div>
+</div>
+<!-- Close Button -->
+<button aria-label="Tutup modal" class="p-sm text-secondary hover:text-primary transition-colors flex items-center justify-center rounded-full hover:bg-surface-container-low" type="button">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Scrollable Content -->
+<div class="p-md overflow-y-auto flex-1">
+<!-- Serving Size Info -->
+<div class="mb-lg">
+<p class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">info</span>
+                        Berdasarkan porsi 100 gram
+                    </p>
+</div>
+<!-- AKG Table -->
+<div class="space-y-lg">
+<!-- Category: Makronutrien -->
+<section>
+<h3 class="font-label-md text-label-md text-primary border-b-2 border-primary pb-xs mb-sm uppercase tracking-wider">Makronutrien</h3>
+<div class="space-y-sm">
+<div class="flex justify-between items-center py-xs border-b border-surface-variant">
+<span class="font-body-md text-body-md text-on-surface">Energi</span>
+<div class="flex items-center gap-md">
+<span class="font-label-md text-label-md text-on-surface-variant">23 kcal</span>
+<span class="bg-primary-container text-on-primary font-label-sm text-label-sm px-2 py-1 rounded-full min-w-[3rem] text-center">1%</span>
+</div>
+</div>
+<div class="flex justify-between items-center py-xs border-b border-surface-variant">
+<span class="font-body-md text-body-md text-on-surface">Karbohidrat</span>
+<div class="flex items-center gap-md">
+<span class="font-label-md text-label-md text-on-surface-variant">3.6 g</span>
+<span class="bg-primary-container text-on-primary font-label-sm text-label-sm px-2 py-1 rounded-full min-w-[3rem] text-center">1%</span>
+</div>
+</div>
+<div class="flex justify-between items-center py-xs border-b border-surface-variant">
+<span class="font-body-md text-body-md text-on-surface">Protein</span>
+<div class="flex items-center gap-md">
+<span class="font-label-md text-label-md text-on-surface-variant">2.9 g</span>
+<span class="bg-primary-container text-on-primary font-label-sm text-label-sm px-2 py-1 rounded-full min-w-[3rem] text-center">5%</span>
+</div>
+</div>
+<div class="flex justify-between items-center py-xs border-b border-surface-variant">
+<span class="font-body-md text-body-md text-on-surface">Lemak Total</span>
+<div class="flex items-center gap-md">
+<span class="font-label-md text-label-md text-on-surface-variant">0.4 g</span>
+<span class="bg-primary-container text-on-primary font-label-sm text-label-sm px-2 py-1 rounded-full min-w-[3rem] text-center">&lt;1%</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Category: Vitamin & Mineral -->
+<section>
+<h3 class="font-label-md text-label-md text-primary border-b-2 border-primary pb-xs mb-sm uppercase tracking-wider">Vitamin &amp; Mineral Utama</h3>
+<div class="space-y-sm">
+<div class="flex justify-between items-center py-xs border-b border-surface-variant">
+<span class="font-body-md text-body-md text-on-surface">Vitamin A</span>
+<div class="flex items-center gap-md">
+<span class="font-label-md text-label-md text-on-surface-variant">469 µg</span>
+<span class="bg-primary-container text-on-primary font-label-sm text-label-sm px-2 py-1 rounded-full min-w-[3rem] text-center">52%</span>
+</div>
+</div>
+<div class="flex justify-between items-center py-xs border-b border-surface-variant">
+<span class="font-body-md text-body-md text-on-surface">Vitamin C</span>
+<div class="flex items-center gap-md">
+<span class="font-label-md text-label-md text-on-surface-variant">28 mg</span>
+<span class="bg-primary-container text-on-primary font-label-sm text-label-sm px-2 py-1 rounded-full min-w-[3rem] text-center">31%</span>
+</div>
+</div>
+<div class="flex justify-between items-center py-xs border-b border-surface-variant">
+<span class="font-body-md text-body-md text-on-surface">Zat Besi</span>
+<div class="flex items-center gap-md">
+<span class="font-label-md text-label-md text-on-surface-variant">2.7 mg</span>
+<span class="bg-primary-container text-on-primary font-label-sm text-label-sm px-2 py-1 rounded-full min-w-[3rem] text-center">15%</span>
+</div>
+</div>
+<div class="flex justify-between items-center py-xs border-b border-surface-variant">
+<span class="font-body-md text-body-md text-on-surface">Kalsium</span>
+<div class="flex items-center gap-md">
+<span class="font-label-md text-label-md text-on-surface-variant">99 mg</span>
+<span class="bg-primary-container text-on-primary font-label-sm text-label-sm px-2 py-1 rounded-full min-w-[3rem] text-center">10%</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Highlights Section -->
+<div class="mt-lg">
+<h3 class="font-label-md text-label-md text-primary mb-sm">Keunggulan Nutrisi</h3>
+<div class="flex flex-wrap gap-sm">
+<span class="px-3 py-1 rounded-full border border-primary text-primary font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">eco</span>
+                            Tinggi Zat Besi
+                        </span>
+<span class="px-3 py-1 rounded-full border border-primary text-primary font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+                            Kaya Vitamin A
+                        </span>
+<span class="px-3 py-1 rounded-full border border-primary text-primary font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">fitness_center</span>
+                            Rendah Kalori
+                        </span>
+</div>
+</div>
+</div>
+<!-- Sticky Footer Action -->
+<div class="sticky bottom-0 bg-surface-container-lowest border-t border-surface-container-highest p-md">
+<button class="w-full py-[14px] px-md rounded-xl border-2 border-primary text-primary font-label-md text-label-md flex items-center justify-center hover:bg-surface-container-low active:bg-surface-container transition-colors" type="button">
+                    Tutup
+                </button>
+</div>
+</div>
+</div>
+</body></html>

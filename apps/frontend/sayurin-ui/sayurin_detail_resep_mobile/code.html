@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sayurin - Resep Detail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#f9faf7",
+                        "surface-dim": "#d9dad8",
+                        "inverse-surface": "#2e312f",
+                        "on-primary-container": "#8abda9",
+                        "on-error": "#ffffff",
+                        "primary": "#003629",
+                        "surface-variant": "#e2e3e0",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed": "#34100b",
+                        "on-secondary-container": "#606365",
+                        "surface-container-low": "#f3f4f1",
+                        "outline-variant": "#c0c9c3",
+                        "primary-container": "#1b4d3e",
+                        "on-tertiary-container": "#e4a399",
+                        "inverse-on-surface": "#f0f1ee",
+                        "secondary-container": "#dee0e2",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#673831",
+                        "on-background": "#191c1b",
+                        "on-primary-fixed": "#002117",
+                        "surface-container-high": "#e7e8e6",
+                        "on-tertiary-fixed-variant": "#693a33",
+                        "inverse-primary": "#9ed1bd",
+                        "on-secondary-fixed": "#191c1e",
+                        "secondary-fixed": "#e1e2e4",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed-dim": "#fab6ac",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#f9faf7",
+                        "secondary-fixed-dim": "#c5c6c8",
+                        "surface-container": "#edeeeb",
+                        "outline": "#707974",
+                        "surface-container-highest": "#e2e3e0",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#5c5f60",
+                        "primary-fixed-dim": "#9ed1bd",
+                        "on-secondary-fixed-variant": "#444749",
+                        "on-primary-fixed-variant": "#1d4f40",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#191c1b",
+                        "primary-fixed": "#baeed9",
+                        "background": "#f9faf7",
+                        "tertiary-fixed": "#ffdad5",
+                        "surface-tint": "#376757",
+                        "on-surface-variant": "#404945",
+                        "tertiary": "#4c221c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "section-gap": "48px",
+                        "gutter": "16px",
+                        "container-margin": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "label-caps": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "headline-md": ["20px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "500" }],
+                        "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #F4F5F7; }
+        .ambient-shadow { box-shadow: 0px 10px 30px rgba(27, 77, 62, 0.05); }
+    </style>
+</head>
+<body class="font-body-sm text-on-surface antialiased pb-24">
+<!-- Top Navigation (Mobile - Back Button) -->
+<header class="sticky top-0 z-50 w-full px-container-margin py-base flex items-center bg-surface-bright/90 backdrop-blur-md">
+<button aria-label="Kembali" class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-lowest ambient-shadow text-primary-container">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<div class="flex-1 text-center pr-10">
+<h1 class="font-headline-md text-headline-md text-primary">Resep</h1>
+</div>
+</header>
+<main class="w-full flex flex-col gap-section-gap pt-gutter">
+<!-- Recipe Hero Section -->
+<section class="px-container-margin flex flex-col gap-gutter">
+<div class="w-full h-64 rounded-xl overflow-hidden ambient-shadow bg-surface-container-lowest">
+<img class="w-full h-full object-cover" data-alt="A beautifully plated dish of Sayur Asem, a traditional Indonesian vegetable soup, served in a ceramic bowl. The lighting is bright and natural, highlighting the fresh colors of the vegetables like corn, chayote, and long beans. Set on a clean, modern wooden table with an off-white background (#F4F5F7), evoking a fresh, organic, and appetizing mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEhFgnVHKQ44X-Of4j8dOK0vBRw6UU7Z8xq8PJbTQiPswaxN65rNgMGpkESprHBg8fBFJLz2-yz5yWgRo6n1VUythlTLiZRmVyjbY38QnviBsq_sS2Bxxde7N7jYdysde5ASBdXLLxu2emSpl81MSKHeGMK3Lsg9GV6JbXep5BMxt4BS4dDjhQVTHkX9AT8IfstdRwIxJC7imlfXGsgE22RxJelL7fDxt-CL8CbV9L_wRu2nFLxLQRng"/>
+</div>
+<div class="flex flex-col gap-base">
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-surface-container-lowest text-primary rounded-full font-label-caps text-label-caps border border-primary-container/10">Sayuran</span>
+<span class="px-3 py-1 bg-surface-container-lowest text-primary rounded-full font-label-caps text-label-caps border border-primary-container/10">15 Menit</span>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Sayur Asem Segar ala Rumahan</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Resep klasik sayur asem yang menyegarkan dengan paduan asam jawa dan sayuran segar pilihan. Cocok untuk hidangan makan siang.</p>
+</div>
+</section>
+<!-- Interactive Portion Card -->
+<section class="px-container-margin">
+<div class="bg-surface-container-lowest rounded-xl p-container-margin ambient-shadow flex flex-col gap-gutter">
+<div class="flex items-center justify-between border-b border-surface-container-low pb-base">
+<h3 class="font-headline-md text-headline-md text-primary">Atur Porsi &amp; Cek Pantry Dapur</h3>
+<div class="flex items-center gap-2 bg-surface-container px-3 py-1 rounded-full">
+<button aria-label="Kurangi porsi" class="text-primary-container">
+<span class="material-symbols-outlined text-[18px]" data-icon="remove">remove</span>
+</button>
+<span class="font-body-lg text-body-lg text-primary w-4 text-center">2</span>
+<button aria-label="Tambah porsi" class="text-primary-container">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+</button>
+</div>
+</div>
+<div class="flex flex-col gap-base">
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase">Bahan-bahan</p>
+<!-- Ingredient Items -->
+<div class="flex items-center justify-between py-2 border-b border-surface-container-low/50">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-lg bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close up of fresh sweet corn on the cob cut into chunks on a clean white surface. Bright studio lighting, organic feel, high quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJQCgS0K6C4BmNZLX3x1kLodx5Jl5ydYjSCAeDLPSyBdbwTjTe3gyJ3pKh2FOPz_tk82ve3yDwoZ4SwuEZYS1fJJ6BOjeUtZYaiu5YfMZHH-9lRzmYezF5xLdHw3RzJoDTehWMi9QaizO3HpZbsZXmM0kfKDu3dsk2XmAwi5yp7JYXhmCSCJFl5HbTdYWr6Nr1Os-wSyGeFaru5nwm8d482DWQHyZm1ug9VaB-3KdTwlx63gO8EU4NIw"/>
+</div>
+<div class="flex flex-col">
+<span class="font-body-lg text-body-lg text-primary">Jagung Manis</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">1 Buah</span>
+</div>
+</div>
+<label class="flex items-center cursor-pointer">
+<div class="relative">
+<input checked="" class="sr-only" type="checkbox"/>
+<div class="block w-6 h-6 rounded-md border border-primary-container bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-surface-bright text-[16px]" data-icon="check">check</span>
+</div>
+</div>
+</label>
+</div>
+<div class="flex items-center justify-between py-2 border-b border-surface-container-low/50">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-lg bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Fresh labu siam (chayote) peeled and diced on a pristine white background. Natural soft lighting, organic and clean aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEHEkqWRfSUN43af5481JBAz6AKzRfuoPxynYUCIhKzo_wAxIptsnzma_LMy4NECjIunbq91Q6d9WKtFBuPF_0Wkd1eWchIV1avHo3mPVSIO8MB95_r5P2YHxB4-HavxVA-s8Q5bJzqgcFgH6OZB6p33E9QHao6zTAtR-0mRydYCfSBrbT60PBoDMtpAvkvWqiKRpljQ3GlXYChJVcuwDx4LRq-hIa9ZTN9gVtAhe4JNbN96nuBSNYAg"/>
+</div>
+<div class="flex flex-col">
+<span class="font-body-lg text-body-lg text-primary">Labu Siam</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">1/2 Buah</span>
+</div>
+</div>
+<label class="flex items-center cursor-pointer">
+<div class="relative">
+<input checked="" class="sr-only" type="checkbox"/>
+<div class="block w-6 h-6 rounded-md border border-primary-container bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-surface-bright text-[16px]" data-icon="check">check</span>
+</div>
+</div>
+</label>
+</div>
+<div class="flex items-center justify-between py-2">
+<div class="flex items-center gap-3 opacity-50">
+<div class="w-12 h-12 rounded-lg bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A small pile of fresh tamarind paste (asam jawa) on a white plate. Top down view, minimalist style, sharp focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzTMTiOC5gYMIhipvH6FKxcDFM25zZERvG_UL8IKbDx4MynO0irE83M_vIcURgthnf3DGwxIrxii8t2PY98zVVGa29fKqX9kBRhHm7vTQYElDtRTzou6GZv6DlXrOYA5bPI2-_PBltCUA86wLHyQrXa1SGUZVxlapFtfsxkVH08-PrhUQgOoOK0GJK_oGQv8x-WRgVSiT2zK_SyIHc_u4yXcaCjs0rpR6FTOF2ICzrqMlEui90_TfZVw"/>
+</div>
+<div class="flex flex-col">
+<span class="font-body-lg text-body-lg text-primary line-through">Asam Jawa</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">2 Sdm (Ada di dapur)</span>
+</div>
+</div>
+<label class="flex items-center cursor-pointer">
+<div class="relative">
+<input class="sr-only" type="checkbox"/>
+<div class="block w-6 h-6 rounded-md border border-primary-container/30 bg-transparent flex items-center justify-center">
+</div>
+</div>
+</label>
+</div>
+</div>
+</div>
+</section>
+<!-- Steps Section -->
+<section class="px-container-margin mb-8 flex flex-col gap-gutter">
+<h3 class="font-headline-md text-headline-md text-primary">Langkah Memasak</h3>
+<ol class="flex flex-col gap-gutter border-l-2 border-primary-container/10 ml-3 pl-6 relative">
+<li class="relative">
+<span class="absolute -left-[35px] top-0 w-6 h-6 rounded-full bg-primary-container text-surface-bright font-label-caps text-label-caps flex items-center justify-center">1</span>
+<p class="font-body-lg text-body-lg text-primary">Didihkan air dalam panci.</p>
+</li>
+<li class="relative">
+<span class="absolute -left-[35px] top-0 w-6 h-6 rounded-full bg-surface-container text-primary font-label-caps text-label-caps flex items-center justify-center">2</span>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Masukkan bumbu halus, daun salam, lengkuas, dan asam jawa. Rebus hingga harum.</p>
+</li>
+<li class="relative">
+<span class="absolute -left-[35px] top-0 w-6 h-6 rounded-full bg-surface-container text-primary font-label-caps text-label-caps flex items-center justify-center">3</span>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Tambahkan sayuran yang keras lebih dulu (jagung manis). Masak hingga setengah empuk.</p>
+</li>
+<li class="relative">
+<span class="absolute -left-[35px] top-0 w-6 h-6 rounded-full bg-surface-container text-primary font-label-caps text-label-caps flex items-center justify-center">4</span>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Masukkan sisa sayuran, garam, dan gula. Koreksi rasa. Angkat dan sajikan hangat.</p>
+</li>
+</ol>
+</section>
+</main>
+<!-- Sticky Bottom Action Bar -->
+<div class="fixed bottom-0 w-full bg-surface-container-lowest border-t border-primary-container px-container-margin py-gutter flex justify-between items-center ambient-shadow z-50">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Estimasi Harga</span>
+<span class="font-headline-md text-headline-md text-primary">Total: Rp 18.500</span>
+</div>
+<button class="bg-primary-container text-surface-bright px-6 py-3 rounded-full font-body-lg text-body-lg flex items-center gap-2 hover:-translate-y-1 hover:shadow-lg transition-transform">
+<span>Beli Bahan Sisa</span>
+<span class="material-symbols-outlined text-[20px]" data-icon="shopping_bag">shopping_bag</span>
+</button>
+</div>
+</body></html>

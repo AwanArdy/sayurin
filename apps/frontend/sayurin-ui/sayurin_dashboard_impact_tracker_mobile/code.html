@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sayurin - User Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-low": "#eef5f7",
+                      "surface-dim": "#d4dbdd",
+                      "secondary-fixed": "#e1e2e4",
+                      "secondary": "#5c5f60",
+                      "primary-container": "#1b4d3e",
+                      "on-surface": "#161d1f",
+                      "primary": "#003629",
+                      "secondary-fixed-dim": "#c5c6c8",
+                      "background": "#f4fafd",
+                      "error-container": "#ffdad6",
+                      "outline-variant": "#c0c9c3",
+                      "on-tertiary": "#ffffff",
+                      "inverse-surface": "#2b3234",
+                      "surface-variant": "#dde4e6",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-on-surface": "#ebf2f4",
+                      "surface-bright": "#f4fafd",
+                      "outline": "#707974",
+                      "on-error-container": "#93000a",
+                      "primary-fixed": "#baeed9",
+                      "tertiary-fixed": "#e2e2e2",
+                      "on-tertiary-container": "#b1b2b2",
+                      "on-secondary-fixed": "#191c1e",
+                      "surface-container-highest": "#dde4e6",
+                      "surface-tint": "#376757",
+                      "on-tertiary-fixed": "#1a1c1c",
+                      "on-tertiary-fixed-variant": "#454747",
+                      "surface-container-high": "#e2e9ec",
+                      "on-primary-container": "#8abda9",
+                      "primary-fixed-dim": "#9ed1bd",
+                      "on-background": "#161d1f",
+                      "on-secondary-container": "#606365",
+                      "on-primary-fixed": "#002117",
+                      "inverse-primary": "#9ed1bd",
+                      "tertiary-container": "#434545",
+                      "on-primary-fixed-variant": "#1d4f40",
+                      "on-secondary-fixed-variant": "#444749",
+                      "on-primary": "#ffffff",
+                      "tertiary-fixed-dim": "#c6c6c7",
+                      "secondary-container": "#dee0e2",
+                      "surface-container": "#e8eff1",
+                      "tertiary": "#2d2f2f",
+                      "on-error": "#ffffff",
+                      "error": "#ba1a1a",
+                      "on-secondary": "#ffffff",
+                      "on-surface-variant": "#404945",
+                      "surface": "#f4fafd"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "2xl": "1.5rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xl": "40px",
+                      "margin-mobile": "16px",
+                      "sm": "8px",
+                      "container-max": "1200px",
+                      "xs": "4px",
+                      "lg": "24px",
+                      "unit": "4px",
+                      "md": "16px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "body-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "display-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label-sm": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-lg-mobile": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label-md": [
+                              "Plus Jakarta Sans"
+                      ]
+              },
+              "fontSize": {
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Hide scrollbar for horizontal scroll but keep functionality */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased pb-[80px]">
+<!-- Top App Bar (Sticky Header) -->
+<header class="sticky top-0 z-50 bg-surface dark:bg-inverse-surface flat no shadows w-full">
+<div class="flex justify-between items-center px-margin-mobile md:px-lg py-md max-w-container-max mx-auto w-full">
+<h1 class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed">Sayurin</h1>
+<div class="flex items-center gap-md">
+<button aria-label="Search" class="text-secondary dark:text-secondary-fixed hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<button aria-label="Cart" class="text-secondary dark:text-secondary-fixed hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+</button>
+<button aria-label="Lock" class="text-secondary dark:text-secondary-fixed hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined" data-icon="lock">lock</span>
+</button>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-lg space-y-lg mt-md">
+<!-- User Profile Summary -->
+<section class="flex items-center gap-md">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-surface-container-high bg-surface-container-lowest shrink-0">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="A close-up portrait of a young professional wearing eco-friendly casual wear, smiling warmly in a bright, modern organic grocery setting. Soft, natural lighting. Aesthetically aligned with a premium, organic brand using white and deep green tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqz6yETE61ipq69c7-PTliL6vhq_K2t4v76HgLYHghlBHW6lGtyMSW4B3EK9nDFPTHaNWd4EmuQU-ZRkx_6eegx1Np-hT-iZKTXrDQaHBlxlK5b5lGTAjUH3mjXSIOkNr3jih0OdJiGjXudmGtjcDW-ZNUG-GpQUqwytECQbXI3JoDVfRaRI6j4SVrSKeoaH3BR13dNNlsmAcPDoGpRo-RmXs6EN5rd2GmcpNBMTZVTflyHQDoZpw1Mg"/>
+</div>
+<div>
+<h2 class="text-headline-lg-mobile font-headline-lg-mobile text-on-surface">Halo, Budi!</h2>
+<div class="flex items-center gap-xs mt-xs">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-primary-container text-on-primary-container text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[14px] mr-1" data-icon="eco" data-weight="fill">eco</span>
+                        Eco Warrior
+                    </span>
+</div>
+</div>
+</section>
+<!-- Horizontal Nav Tabs -->
+<nav class="flex overflow-x-auto no-scrollbar gap-sm border-b border-surface-variant pb-xs">
+<a class="px-md py-sm text-label-md font-label-md text-secondary dark:text-secondary-fixed whitespace-nowrap" href="#">Profil</a>
+<a class="px-md py-sm text-label-md font-label-md text-secondary dark:text-secondary-fixed whitespace-nowrap" href="#">Riwayat Pesanan</a>
+<a class="px-md py-sm text-label-md font-label-md text-primary dark:text-primary-fixed border-b-2 border-primary whitespace-nowrap" href="#">Waste Log Saya</a>
+</nav>
+<!-- Digital Waste Log & Impact Tracker Card -->
+<section class="bg-surface-container-lowest rounded-2xl p-lg shadow-[0_4px_20px_rgba(0,0,0,0.04)] border border-surface-variant">
+<header class="mb-lg">
+<h3 class="text-headline-md font-headline-md text-primary">Dampak Hijau &amp; Jejak Pangan 🌿</h3>
+<p class="text-body-md font-body-md text-secondary mt-xs">Kontribusimu bulan ini</p>
+</header>
+<!-- Metric Grid -->
+<div class="grid grid-cols-2 gap-md mb-lg">
+<div class="bg-surface-container-low rounded-xl p-md flex flex-col items-start">
+<div class="p-sm bg-primary-container rounded-full text-on-primary-container mb-sm">
+<span class="material-symbols-outlined" data-icon="compost">compost</span>
+</div>
+<span class="text-headline-lg-mobile font-headline-lg-mobile text-on-surface">4.2 kg</span>
+<span class="text-label-sm font-label-sm text-secondary">Food waste dicegah</span>
+</div>
+<div class="bg-surface-container-low rounded-xl p-md flex flex-col items-start">
+<div class="p-sm bg-primary-container rounded-full text-on-primary-container mb-sm">
+<span class="material-symbols-outlined" data-icon="recycling">recycling</span>
+</div>
+<span class="text-headline-lg-mobile font-headline-lg-mobile text-on-surface">18 pcs</span>
+<span class="text-label-sm font-label-sm text-secondary">Plastik dihemat</span>
+</div>
+<div class="col-span-2 bg-surface-container-low rounded-xl p-md flex flex-row items-center justify-between">
+<div>
+<span class="text-headline-lg-mobile font-headline-lg-mobile text-on-surface block">Rp 125.000</span>
+<span class="text-label-sm font-label-sm text-secondary">Total Penghematan (Produk Imperfect)</span>
+</div>
+<div class="p-sm bg-primary-container rounded-full text-on-primary-container">
+<span class="material-symbols-outlined" data-icon="savings">savings</span>
+</div>
+</div>
+</div>
+<!-- Visual Trend -->
+<div class="mb-lg">
+<div class="flex justify-between items-center mb-sm">
+<span class="text-label-md font-label-md text-on-surface">Progres Target Bulanan</span>
+<span class="text-label-sm font-label-sm text-primary font-bold">85%</span>
+</div>
+<div class="h-2 w-full bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full" style="width: 85%;"></div>
+</div>
+</div>
+<!-- Order Timeline Compact -->
+<div>
+<h4 class="text-label-md font-label-md text-on-surface mb-md">Aktivitas Terbaru</h4>
+<div class="space-y-sm">
+<div class="flex items-center gap-md py-sm border-b border-surface-variant last:border-0">
+<div class="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined" data-icon="local_mall">local_mall</span>
+</div>
+<div class="flex-1">
+<p class="text-label-md font-label-md text-on-surface">Sayuran Imperfect Box</p>
+<p class="text-label-sm font-label-sm text-secondary">Hari ini • Menghemat 1.2kg waste</p>
+</div>
+</div>
+<div class="flex items-center gap-md py-sm border-b border-surface-variant last:border-0">
+<div class="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined" data-icon="eco">eco</span>
+</div>
+<div class="flex-1">
+<p class="text-label-md font-label-md text-on-surface">Refill Sabun Cuci</p>
+<p class="text-label-sm font-label-sm text-secondary">2 hari lalu • Menghemat 2 botol plastik</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar for Mobile (Hidden on md) -->
+<nav class="md:hidden fixed bottom-0 w-full bg-surface-container-lowest border-t border-surface-variant z-50 px-margin-mobile py-sm flex justify-between items-center shadow-[0_-4px_20px_rgba(0,0,0,0.04)]">
+<a class="flex flex-col items-center gap-1 text-secondary p-2 hover:bg-surface-container-low rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-label-sm font-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-secondary p-2 hover:bg-surface-container-low rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="eco">eco</span>
+<span class="text-label-sm font-label-sm">Produce</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary p-2 bg-secondary-container rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined fill" data-icon="person">person</span>
+<span class="text-label-sm font-label-sm font-bold">Profile</span>
+</a>
+</nav>
+<!-- Side Navigation Bar for Desktop (Hidden on mobile) -->
+<nav class="hidden md:flex fixed inset-y-0 left-0 z-50 flex-col bg-surface-container-lowest dark:bg-inverse-surface shadow-md h-full w-80 rounded-r-xl pt-24">
+<div class="p-lg">
+<h2 class="text-headline-sm font-headline-sm text-primary mb-1">Your Basket</h2>
+<p class="text-body-md font-body-md text-secondary mb-xl">Freshness delivered</p>
+<ul class="space-y-sm">
+<li>
+<a class="flex items-center gap-md text-secondary dark:text-secondary-fixed p-md hover:bg-surface-container-high dark:hover:bg-tertiary-container rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-label-md font-label-md">Home</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md text-secondary dark:text-secondary-fixed p-md hover:bg-surface-container-high dark:hover:bg-tertiary-container rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="eco">eco</span>
+<span class="text-label-md font-label-md">Produce</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md text-secondary dark:text-secondary-fixed p-md hover:bg-surface-container-high dark:hover:bg-tertiary-container rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="text-label-md font-label-md">Orders</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md bg-secondary-container dark:bg-primary-container text-on-secondary-container dark:text-on-primary-container rounded-xl p-md translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-label-md font-label-md">Profile</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+</body></html>
