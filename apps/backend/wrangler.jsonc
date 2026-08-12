@@ -25,7 +25,8 @@
      {
        "binding": "DB",
        "database_name": "sayurin",
-       "database_id": ""
+       "database_id": "ef36db09-6bed-4b8e-be84-0075ff38a700",
+       "migrations_dir": "drizzle"
     }
   ]
   // "ai": {
