@@ -4,7 +4,7 @@ import { getProduct, type Product } from '../lib/api'
 import { demoProducts } from '../data/demo'
 import { formatRupiah, nutritionLabel, parseNutritionTags } from '../lib/format'
 import { productImage } from '../lib/images'
-import { useAppStore } from '../store/AppStore'
+import { useAppStore } from '../store/context'
 import { Icon } from '../components/Icon'
 import { Stepper } from '../components/Stepper'
 
@@ -19,7 +19,6 @@ export function ProductDetail() {
 
   useEffect(() => {
     let cancelled = false
-    setLoading(true)
     getProduct(id)
       .then((p) => {
         if (!cancelled) setProduct(p)
@@ -190,7 +189,7 @@ export function ProductDetail() {
       </div>
 
       {/* Sticky bottom action bar (mobile) / inline (desktop) */}
-      <div className="fixed inset-x-0 bottom-0 z-40 flex items-center justify-between border-t border-primary/10 bg-surface-container-lowest px-6 py-4 shadow-[0px_-10px_30px_rgba(0,0,0,0.05)] md:static md:mt-8 md:mx-auto md:max-w-[1200px] md:border-none md:bg-transparent md:p-0 md:shadow-none">
+      <div className="fixed inset-x-0 bottom-[76px] z-40 flex items-center justify-between border-t border-primary/10 bg-surface-container-lowest px-6 py-4 shadow-[0px_-10px_30px_rgba(0,0,0,0.05)] md:static md:bottom-0 md:mt-8 md:mx-auto md:max-w-[1200px] md:border-none md:bg-transparent md:p-0 md:shadow-none">
         <div className="flex w-full items-center gap-4 md:justify-end md:ml-auto">
           <Stepper value={qty} min={1} onChange={setQty} />
           <button

@@ -44,3 +44,9 @@ export function parseInstructions(raw: string | null): string[] {
     return []
   }
 }
+
+export function difficultyLabel(timeMins: number | null): string {
+  if (timeMins == null || timeMins <= 10) return 'Sangat Mudah'
+  if (timeMins <= 20) return 'Mudah'
+  return 'Sedang'
+}

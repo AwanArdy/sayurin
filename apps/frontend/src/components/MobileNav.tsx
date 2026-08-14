@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { useAppStore } from '../store/AppStore'
+import { useAppStore } from '../store/context'
 import { Icon } from './Icon'
 
 export function MobileNav() {

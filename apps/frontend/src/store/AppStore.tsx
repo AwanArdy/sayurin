@@ -1,45 +1,12 @@
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useMemo,
-  useState,
-  type ReactNode,
-} from 'react'
+import { useCallback, useMemo, useState, type ReactNode } from 'react'
 import type { Product } from '../lib/api'
-
-export interface CartLine {
-  product: Product
-  qty: number
-  fromRecipe?: boolean
-}
+import { AppStoreContext, type CartLine } from './context'
 
 interface UIState {
   cartOpen: boolean
   nutritionProduct: Product | null
   substitutionOpen: boolean
 }
-
-interface AppStoreValue {
-  cart: CartLine[]
-  cartCount: number
-  cartSubtotal: number
-  addToCart: (product: Product, qty?: number) => void
-  updateQty: (productId: string, qty: number) => void
-  removeFromCart: (productId: string) => void
-  clearCart: () => void
-  cartOpen: boolean
-  openCart: () => void
-  closeCart: () => void
-  nutritionProduct: Product | null
-  openNutrition: (product: Product) => void
-  closeNutrition: () => void
-  substitutionOpen: boolean
-  openSubstitution: () => void
-  closeSubstitution: () => void
-}
-
-const AppStoreContext = createContext<AppStoreValue | null>(null)
 
 export function AppStoreProvider({ children }: { children: ReactNode }) {
   const [cart, setCart] = useState<CartLine[]>([])
@@ -80,7 +47,7 @@ export function AppStoreProvider({ children }: { children: ReactNode }) {
     return { cartCount: count, cartSubtotal: subtotal }
   }, [cart])
 
-  const value = useMemo<AppStoreValue>(
+  const value = useMemo(
     () => ({
       cart,
       cartCount,
@@ -93,7 +60,7 @@ export function AppStoreProvider({ children }: { children: ReactNode }) {
       openCart: () => setUi((s) => ({ ...s, cartOpen: true })),
       closeCart: () => setUi((s) => ({ ...s, cartOpen: false })),
       nutritionProduct: ui.nutritionProduct,
-      openNutrition: (product) => setUi((s) => ({ ...s, nutritionProduct: product })),
+      openNutrition: (product: Product) => setUi((s) => ({ ...s, nutritionProduct: product })),
       closeNutrition: () => setUi((s) => ({ ...s, nutritionProduct: null })),
       substitutionOpen: ui.substitutionOpen,
       openSubstitution: () => setUi((s) => ({ ...s, substitutionOpen: true })),
@@ -112,10 +79,4 @@ export function AppStoreProvider({ children }: { children: ReactNode }) {
   )
 
   return <AppStoreContext.Provider value={value}>{children}</AppStoreContext.Provider>
-}
-
-export function useAppStore(): AppStoreValue {
-  const ctx = useContext(AppStoreContext)
-  if (!ctx) throw new Error('useAppStore harus dipakai di dalam <AppStoreProvider>')
-  return ctx
 }

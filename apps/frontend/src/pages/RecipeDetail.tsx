@@ -2,11 +2,10 @@ import { useEffect, useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { getRecipe, type RecipeDetail } from '../lib/api'
 import { demoRecipeDetail } from '../data/demo'
-import { formatRupiah, parseInstructions } from '../lib/format'
+import { formatRupiah, parseInstructions, difficultyLabel } from '../lib/format'
 import { recipeImage } from '../lib/images'
-import { useAppStore } from '../store/AppStore'
+import { useAppStore } from '../store/context'
 import { Icon } from '../components/Icon'
-import { difficultyLabel } from '../components/RecipeCard'
 
 type IngredientWise = RecipeDetail['ingredients'][number]
 
@@ -21,7 +20,6 @@ export function RecipeDetailPage() {
 
   useEffect(() => {
     let cancelled = false
-    setLoading(true)
     getRecipe(id)
       .then((r) => {
         if (!cancelled) setRecipe(r)

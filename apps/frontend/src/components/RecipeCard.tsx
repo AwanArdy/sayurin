@@ -1,13 +1,8 @@
 import { Link } from 'react-router-dom'
 import type { Recipe } from '../lib/api'
+import { difficultyLabel } from '../lib/format'
 import { recipeImage } from '../lib/images'
 import { Icon } from './Icon'
-
-export function difficultyLabel(timeMins: number | null): string {
-  if (timeMins == null || timeMins <= 10) return 'Sangat Mudah'
-  if (timeMins <= 20) return 'Mudah'
-  return 'Sedang'
-}
 
 export function RecipeCardGrid({ recipe }: { recipe: Recipe }) {
   return (

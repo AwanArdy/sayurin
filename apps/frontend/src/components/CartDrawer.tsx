@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { formatRupiah } from '../lib/format'
 import { productImage } from '../lib/images'
-import { useAppStore } from '../store/AppStore'
+import { useAppStore } from '../store/context'
 import { Icon } from './Icon'
 import { Stepper } from './Stepper'
 

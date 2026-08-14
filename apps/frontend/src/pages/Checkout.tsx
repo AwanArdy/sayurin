@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { createCheckout, type SubstitutionPolicy } from '../lib/api'
 import { formatRupiah } from '../lib/format'
 import { productImage } from '../lib/images'
-import { useAppStore } from '../store/AppStore'
+import { useAppStore } from '../store/context'
 import { Icon } from '../components/Icon'
 import { SubstitutionModal } from '../components/SubstitutionModal'
 
@@ -28,7 +28,7 @@ const POLICIES: { value: SubstitutionPolicy; title: string; desc: string }[] = [
 ]
 
 export function Checkout() {
-  const { cart, cartSubtotal, openCart } = useAppStore()
+  const { cart, cartSubtotal, openCart, openSubstitution } = useAppStore()
   const [policy, setPolicy] = useState<SubstitutionPolicy>('auto_similar')
   const [submitting, setSubmitting] = useState(false)
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle')
@@ -195,6 +195,7 @@ export function Checkout() {
               </fieldset>
               <button
                 type="button"
+                onClick={openSubstitution}
                 className="self-start text-[14px] font-semibold text-primary-container hover:underline"
               >
                 Pelajari Lebih Lanjut

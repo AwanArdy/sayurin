@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { SubstitutionPolicy } from '../lib/api'
-import { useAppStore } from '../store/AppStore'
+import { useAppStore } from '../store/context'
 import { Icon } from './Icon'
 
 const POLICIES: { value: string; title: string; desc: string }[] = [

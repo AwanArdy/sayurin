@@ -1,7 +1,7 @@
 import type { Product } from '../lib/api'
 import { parseNutritionTags, nutritionLabel } from '../lib/format'
 import { productImage } from '../lib/images'
-import { useAppStore } from '../store/AppStore'
+import { useAppStore } from '../store/context'
 import { Icon } from './Icon'
 
 interface Nutrient {

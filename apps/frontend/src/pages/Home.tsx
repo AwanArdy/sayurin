@@ -25,8 +25,8 @@ function ProductTile({ product }: ProductTileProps) {
 }
 
 const NUTRITION_FILTERS = [
-  { key: '', label: 'Tinggi Fiber' },
-  { key: 'iron', label: 'Tinggi Zat Besi' },
+  { key: 'fiber', label: 'Kaya Serat' },
+  { key: 'iron', label: 'Zat Besi' },
   { key: 'low_carb', label: 'Rendah Kalori' },
   { key: 'uric_acid_safe', label: 'Aman Asam Urat' },
 ]
